@@ -53,23 +53,53 @@ reString( 'oyasumi')
 
 // #5
 
-var object = {
-	keys: ['Tokyo', 'Jeju'], 
-	values ['sushi', 'abalone'] 
-}
+var keys = ['Tokyo', 'Jeju']
+var values = ['sushi', 'abalone'] 
 
-function twoArrays( val, key ) {
 
-	
-	for (var key in object) {
-		console.log(key + " : " values[key] + "<br>");
+function twoArrays( a, b ) {
+	//create object
+	var object = {}
+	// loop through arrays and store values and keys in object
+	for (var i = 0; i < a.length; i++) {
+		object[keys[i]] = values[i];
+
+		
 	}
+	return object 
 }
-
-twoArrays()	 //I am confused, I get what has to happen, but it doesn't work -_-'...
+console.log(twoArrays(keys, values)) 
 
 
 // #6
 
-//I am still stuck :(
+// Given an object with keys and values, create two arrays: one which contains the object's keys,
+// and one which contains the object's values. Wrap this into a function which takes in one object
+// that contains keys and values, and returns a different object that contains two keys. The first key
+// should be named "keys" and will have the first array as a value. The second key should be named
+// "values" and will have the second array as a value.
+// examples:
+// { exciting: "markets", exotic: "britain" } --> { keys: ["exciting", "exotic"], values: ["markets", "britain"] }
+// { a: "x", b: "y", c: "z" } --> { keys: ["a", "b", "c"], values: ["x", "y", "z"] }
+
+
+var object = {
+	keys: ['T', 'J', 'M']
+	values: ['3', '6', '8'] 
+}; 
+
+this.toString = function twoArrays() {
+	//create object
+	var object = {}
+	// loop through arrays and store values and keys in object
+	for (var i = 0; i < z.length; i++) {
+		object[keys[i]] = values[i];
+
+}
+	return object 
+}
+console.log(twoArrays(keys, values)) 
+
+
+
 
