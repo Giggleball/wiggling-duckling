@@ -9,12 +9,18 @@ gummyBears(3,7,8)
 
 // #2
 
-function letters() {
-	var str = "animation"
-	return str.charAt(8) 
+var str = "animation"
+var other = "joehoe"
+
+//you can select characters of a string by using array-notation
+
+function let (string) {
+	return string[string.length-1]
 }
 
-console.log(letters())
+console.log(let(str))
+console.log(let(other))
+
 
 
 // #3
@@ -63,8 +69,6 @@ function twoArrays( a, b ) {
 	// loop through arrays and store values and keys in object
 	for (var i = 0; i < a.length; i++) {
 		object[keys[i]] = values[i];
-
-		
 	}
 	return object 
 }
@@ -72,34 +76,31 @@ console.log(twoArrays(keys, values))
 
 
 // #6
+// create object
+var ob = { 
+	T: 'woop', 
+	J: 'bleep', 
+	F: 'zoof' 
+};
 
-// Given an object with keys and values, create two arrays: one which contains the object's keys,
-// and one which contains the object's values. Wrap this into a function which takes in one object
-// that contains keys and values, and returns a different object that contains two keys. The first key
-// should be named "keys" and will have the first array as a value. The second key should be named
-// "values" and will have the second array as a value.
-// examples:
-// { exciting: "markets", exotic: "britain" } --> { keys: ["exciting", "exotic"], values: ["markets", "britain"] }
-// { a: "x", b: "y", c: "z" } --> { keys: ["a", "b", "c"], values: ["x", "y", "z"] }
+// create function with an object with 2 empty arrays where you want to store your data in
+function transformobject( obj ) {
+	//create a different object
+	var bob = {
+		keys: [],
+		values: []
+	}
+	
+	//
+	// loop through the object that been put in the function and push the keys AND the values in bob.keys and bob.values
+	for(var key in obj) {
+		bob.keys.push(key);
+		bob.values.push(obj[key])
+	}
 
-
-var object = {
-	keys: ['T', 'J', 'M']
-	values: ['3', '6', '8'] 
-}; 
-
-this.toString = function twoArrays() {
-	//create object
-	var object = {}
-	// loop through arrays and store values and keys in object
-	for (var i = 0; i < z.length; i++) {
-		object[keys[i]] = values[i];
-
+   // return the object
+   return bob
 }
-	return object 
-}
-console.log(twoArrays(keys, values)) 
 
 
-
-
+transformobject(obj)
