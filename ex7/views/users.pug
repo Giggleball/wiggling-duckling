@@ -1,0 +1,8 @@
+html
+	head
+	body
+		h1 Search results
+		each person in results
+			p #{person.firstname} #{person.lastname}
+			br
+			a(href="http://localhost:8000/addUser") Add more users!

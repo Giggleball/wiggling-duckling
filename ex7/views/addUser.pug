@@ -1,0 +1,15 @@
+html
+	head
+	body
+		h1 Search Users
+			form(id="searchCriteria", action="/request", method="post")
+				h3 
+					label(for="addString") Add User by:
+					p Firstname:
+						input(id="addString", name="firstname", type="text")
+					p Lastname:		
+						input(id="addString", name="lastname", type="text")
+					p Email:		
+						input(id="addString", name="email", type="text")
+					button(type="submit") Add Users
+					

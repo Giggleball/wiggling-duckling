@@ -1,0 +1,9 @@
+html
+	head
+	body
+		h1 Search Users
+			form(id="searchCriteria", action="/users", method="post")
+				h3 
+					label(for="searchString") Search String:
+					input(id="searchString", name="searchString", type="text")
+					button(type="submit") Find Users
