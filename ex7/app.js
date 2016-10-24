@@ -5,6 +5,9 @@ const app = express()
 // in order to use bodyParser, you need to install and require it first
 const bodyParser = require('body-parser')
 
+//static will become default and overwrite /home
+app.use( express.static( 'static') )
+
 // which visual template you'll be using 
 app.set( 'view engine', 'pug' )
 app.set( 'views', __dirname + '/views' )
