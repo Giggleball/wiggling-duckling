@@ -25,6 +25,10 @@ app.get( '/', ( request, response ) => {
 		response.render( 'index', { data: parsedData } )
 	})
 })
+app.post( '/dex', ( request, response) => {
+	console.log(request.body)
+	reponse.send(request.body)
+})
 
 // The search page
 app.get( '/search', ( request, response ) => {
