@@ -27,10 +27,10 @@ html(lang='en')
 				h5.header.col.s12.light A modern responsive front-end framework based on Material Design
 					.row.center
 						p Search for a user!
-							form.search(id='searchCriteria', method='post', action='/users')
+							form.search(id='searchCriteria', method='post', action='/users', autocomplete='off')
 								label(for="searchString") Search for other Giggleballs:
-								input(id='searchString', type='text', name='searchString', placeholder='Search...')
-								ul.results
+								input(id='search-box', type='text', name='searchString', list='json-datalist', value='' autofocus='true', placeholder='Search...')
+								datalist(id='json-datalist')
 					br
 					br
 			.parallax

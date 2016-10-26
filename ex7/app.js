@@ -25,9 +25,22 @@ app.get( '/', ( request, response ) => {
 		response.render( 'index', { data: parsedData } )
 	})
 })
+//comparing user imput with the data base
 app.post( '/dex', ( request, response) => {
-	console.log(request.body)
-	reponse.send(request.body)
+	let rb = request.body.input
+	console.log(rb)
+	fs.readFile( __dirname + '/users.json', ( error, data ) => {
+		if ( error ) throw error
+			let parsedData = JSON.parse( data )
+		let list = []
+		for (var i = 0; i < parsedData.length; i++) {
+			if (parsedData[i].firstname.indexOf(rb) > -1 || parsedData[i].lastname.indexOf(rb) > -1 ) {
+				list.push(parsedData[i])
+			}
+		}
+		console.log(list)
+		response.send(list)
+	})
 })
 
 // The search page
@@ -80,11 +93,11 @@ app.post('/request', ( request, response ) => {
 		if ( error ) throw error
 
 		// Create a javascript object with the array in it
-		let newUser = { 
-			firstname: request.body.firstname, 
-			lastname: request.body.lastname, 
-			email: request.body.email
-		}
+	let newUser = { 
+		firstname: request.body.firstname, 
+		lastname: request.body.lastname, 
+		email: request.body.email
+	}
 		// a var where we want to store the new data in
 		let newFile = JSON.parse( data )
 
