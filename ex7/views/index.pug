@@ -28,7 +28,7 @@ html(lang='en')
 					.row.center
 						p Search for a user!
 							form.search(id='searchCriteria', method='post', action='/users', autocomplete='off')
-								label(for="searchString") Search for other Giggleballs:
+								label(for='searchString') Search for other Giggleballs:
 								input(id='search-box', type='text', name='searchString', list='json-datalist', value='' autofocus='true', placeholder='Search...')
 								datalist(id='json-datalist')
 					br

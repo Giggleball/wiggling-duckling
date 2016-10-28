@@ -20,7 +20,7 @@ p {
 }
 
 .parallax{
-  position:static;
+  position:fixed;
 } 
 
 .parallax-container {
