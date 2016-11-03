@@ -1,0 +1,38 @@
+input {
+	border-radius:10px;
+    font-size: 13px;
+    color: #555860;
+    padding: 10px 88px 130px 88px;
+    width: 40%
+}
+
+input.top {
+	border-radius:10px;
+    font-size: 13px;
+    color: #555860;
+    padding: 10px 8px 13px 8px;
+    width: 40%
+}
+
+input.sub {
+  border-radius:8px;
+  width: 8%
+  padding: none;
+
+}
+
+::-webkit-input-placeholder {
+   text-align: center;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   text-align: center;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   text-align: center;  
+}
+
+:-ms-input-placeholder {  
+   text-align: center; 
+}
