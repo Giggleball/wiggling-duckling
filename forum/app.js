@@ -7,7 +7,8 @@ const pg = require( 'pg' )
 
 const bodyParser = require( 'body-parser' )
 
-const connectionString = 'postgres://' + process.env.POSTGRES_USER + ':' + process.env.POSTGRES_PASSWORD
+const connectionString = 'postgres://' + process.env.POSTGRES_USER + '@localhost/bulletinboard';
+console.log(connectionString)
 
 //static will become default and overwrite /home
 app.use( express.static( 'static') )

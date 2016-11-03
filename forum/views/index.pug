@@ -6,7 +6,7 @@ html(lang='en')
 		meta(name='viewport', content='width=device-width, initial-scale=1')
 		meta(name='description', content='')
 		meta(name='author', content='')
-		title Creative - Start Bootstrap Theme
+		title Creative - Start Smiling
 		// Bootstrap Core CSS
 		link(href='vendor/bootstrap/css/bootstrap.min.css', rel='stylesheet')
 		// Custom Fonts
@@ -32,7 +32,7 @@ html(lang='en')
 						span.sr-only Toggle navigation
 						|  Menu 
 						i.fa.fa-bars
-					a.navbar-brand.page-scroll(href='#page-top') Start Bootstrap
+					a.navbar-brand.page-scroll(href='#page-top') Start Smiling
 				// Collect the nav links, forms, and other content for toggling
 				#bs-example-navbar-collapse-1.collapse.navbar-collapse
 					ul.nav.navbar-nav.navbar-right
@@ -49,15 +49,15 @@ html(lang='en')
 		header
 			.header-content
 				.header-content-inner
-					h1#homeHeading Your Favorite Source of Free Bootstrap Themes
+					h1#homeHeading Your Favorite Source of Daily Messages
 					hr
-					.col-lg-12.text-center
+					.col-lg-8.col-lg-offset-2.text-center
 						p Leave us a message!
-							form(id='searchCriteria', method='POST', action='/messages', autocomplete='off')
-									input.top(id='title', type='text', name='title', placeholder='Title')
+							form.center-block(id='searchCriteria', method='POST', action='/messages', autocomplete='off')
+									input.top.form-control(id='title', type='text', name='title', placeholder='Title')
 									br
 									br
-									input(id='message', type='text', name='body', placeholder='What made you smile today?')
+									input.top.form-control(id='message', type='text', name='body', rows="3", placeholder='What made you smile today?')
 									br
 									br
 									input.btn(type="submit", value="submit")
@@ -155,11 +155,6 @@ html(lang='en')
 										| Category
 									.project-name
 										| Project Name
-		aside.bg-dark
-			.container.text-center
-				.call-to-action
-					h2 Free Download at Start Bootstrap!
-					a.btn.btn-default.btn-xl.sr-button(href='http://startbootstrap.com/template-overviews/creative/') Download Now!
 		section#contact
 			.container
 				.row
