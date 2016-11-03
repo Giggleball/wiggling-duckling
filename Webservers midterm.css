@@ -1,0 +1,155 @@
+### Part 1: Servers - 20 minutes
+
+1. What is a server? What does a server do?
+A server stores data and is necessary to use a dynamic webpage
+
+2. What is Node.js?
+Not exactly sure what it is to be honest...
+
+3. What is express?
+A library 
+
+4. What is a client? What does a client do?
+A client is ... [drew a blank] umm, a client is the front end side it requests data from the backend
+
+5. How do the server and the client communicate?
+through things such as node js
+
+6. Debugging:
+- 6a. How do you view server logs?
+in the terminal
+- 6b. How do you view client logs?
+in your console
+
+---
+### Part 2: HTTP Requests - 15 minutes
+
+1. What is an HTTP Request?
+a request for a web page 
+
+2. GET Requests
+- 2a. What is a GET request?
+Request to a page 
+- 2b. When do you use GET requests?
+to view a webpage
+- 2c. How do you send data in a GET request?
+fs readfile
+
+3. POST Requests
+- 3a. What is a POST request?
+a more secure way of requesting a webpage
+- 3b. When do you use POST requests?
+When you have collected data and want to redirect it to another page
+- 3c. How do you send data in a POST request?
+you append it as an object
+
+---
+
+### Intermission
+
+---
+### Part 3: Ajax - 15 minutes
+
+1. Ajax
+- 1a. What is Ajax?
+A jquery library which works asynchronisch
+- 1b. When should you use Ajax?
+When you want to refresh something on your page without reloading the entire page
+
+2. Given the following code snippet:
+
+```js
+console.log("A");
+$('#map').click(function(event) {
+console.log("B");
+var coordinates = convertMouseCoordinatesToGeoCoordinates(event);
+
+console.log("C");
+$.get('/map', { lat: coordinates.x, lon: coordinates.y }, function(response, status) {
+console.log("D");
+mapDisplay.update(response);
+});
+
+console.log("E");
+});
+console.log("F");
+```
+
+- 2a. Describe what seems to be happening.
+and event of where the mouse moves over a map which will be shown as geo coordinates.
+- 2b. In what order is `A` through `F` printed?
+A & F first BCD will happen after there has been clicked on the mouse
+- 2c. Describe the events that happen between each letter. When does the server get hit?
+A and F just happen after the code has been run, the server gets hit when the mouse has been clicked, then the display will 
+update 
+
+---
+
+### Intermission
+
+---
+### Part 4: Jade - 20 minutes
+
+1. Jade
+- 1a. What is Jade?
+Jade is pug = html simplified with no closing tags.
+- 1b. Why should we use Jade?
+It creates a more structured oveview
+
+2. Explain the difference between 'server side' JavaScript and 'client side' JavaScript.
+Server side JS will have get and post requets and require modules (if thats how we call them)
+
+Client side will have functions which control events and Jquery or Ajax in in, it's like css~ish
+
+3. Given this example `index.jade` file:
+
+```js
+doctype html
+html
+head
+script(src='boop.js')
+script.
+var x = 1;
+body
+- var y = 2;
+h2= z + y
+```
+
+- 3a. Is `x` executed server side or client side? Does the client ever see `x`?
+server, no
+- 3b. Is `y` executed server side or client side? Does the client ever see `y`?
+client, yes
+- 3c. Is `z` executed server side or client side? Does the client ever see `z`?
+client, yes
+- 3d. When is `boop.js` executed? Does the client ever see `boop.js`?
+It is executed when the page is requsted, it is a js file, so they might see the contents in a result of an event
+like a fade in, but they will not see the actual code
+
+
+
+---
+### Part 5: Request Lifecycle - 15 minutes
+
+5. Given the following code snippet in an express application:
+
+```js
+app.get('/home', function (request, response) {
+response.render('index', { z: 3 } );
+});
+```
+
+- 5a. List the complete order of events, starting from the browser making a `GET` request to `/home`. 
+Assume that `index` refers to the Jade file in Part 4. Be sure to describe when each JavaScript statement (`x`, `y`, `z`, and `boop.js`) gets executed.
+GET request to home ->
+Response. render -> show home with content from the index page
+content -> H2=5
+- 5b. What is displayed on the page?
+5
+- 5c. What is visible from 'view page source'?
+the pug file(s)
+
+
+
+
+
+
