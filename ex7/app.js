@@ -16,7 +16,7 @@ app.set( 'views', __dirname + '/views' )
 app.use( bodyParser.urlencoded({ extended: true }))
 
 // when home is requested, show the following
-app.get( '/', ( request, response ) => {
+app.get( '/index', ( request, response ) => {
 	console.log( 'About to render index.pug' )
 	fs.readFile( __dirname + '/users.json', ( error, data ) => {
 		if ( error ) throw error
@@ -26,7 +26,7 @@ app.get( '/', ( request, response ) => {
 	})
 })
 //comparing user imput with the data base
-app.post( '/dex', ( request, response) => {
+app.post( '/index', ( request, response) => {
 	let rb = request.body.input
 	console.log(rb)
 	fs.readFile( __dirname + '/users.json', ( error, data ) => {
