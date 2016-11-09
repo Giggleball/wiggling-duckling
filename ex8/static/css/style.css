@@ -1,0 +1,33 @@
+input {
+	border-radius:10px;
+    font-size: 13px;
+    color: #555860;
+}
+
+input.top {
+	border-radius:10px;
+    font-size: 13px;
+    color: #555860;
+}
+
+.mer { 
+  font-family: 'Josefin Slab', serif;
+  font-size: 23px;
+}
+
+
+::-webkit-input-placeholder {
+   text-align: center;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   text-align: center;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   text-align: center;  
+}
+
+:-ms-input-placeholder {  
+   text-align: center; 
+}

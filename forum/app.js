@@ -79,7 +79,7 @@ app.post( '/messages', ( request, response ) => {
 })
 
 
-app.listen(8000, () => {
+app.listen(3000, () => {
 	console.log( 'Server running' )
 })
 
