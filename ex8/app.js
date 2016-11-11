@@ -59,10 +59,11 @@ let Comments = seq.define( 'comments', {
 
 // Define relations
 
-// User.hasMany( Messages )
-// // User.hasMany( Comments )
-// // Messages.belongsTo( User )
-// Comments.belongsTo( Messages )
+User.hasMany( Messages )
+User.hasMany( Comments )
+Messages.belongsTo( User )
+Comments.belongsTo( User )
+Comments.belongsTo( Messages )
 
 
 // Set express routes
