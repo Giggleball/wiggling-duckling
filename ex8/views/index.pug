@@ -108,14 +108,19 @@ html(lang='en')
 					.col-lg-8.col-lg-offset-2.text-center
 						h2.text-faded Leave us a message!
 							br
-							form.center-block(id='searchCriteria', method='POST', action='/messages', autocomplete='off')
-									br
-									input.top.form-control(id='title', type='text', name='title', placeholder='Title')
-									br
-									input.top.form-control(id='message', type='text', name='body', rows="3", placeholder='What made you smile today?')
-									br
-									input.btn(type="submit", value="submit")
-									
+							if user
+								a(href='/index')
+								div#third
+									form.center-block(id='searchCriteria', method='POST', action='/messages', autocomplete='off')
+										br
+										input.top.form-control(id='title', type='text', name='title', placeholder='Title')
+										br
+										input.top.form-control(id='message', type='text', name='body', rows="3", placeholder='What made you smile today?')
+										br
+										input.btn(type="submit", value="submit")
+							else
+								br
+								p Please sign in to leave a message!	
 		section#services
 			.container
 				.row

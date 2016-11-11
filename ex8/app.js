@@ -67,11 +67,6 @@ let Comments = seq.define( 'comments', {
 
 // Set express routes
 
-app.get( '/ping', ( req, res ) => {
-  res.send( 'pong' )
-})
-
-
 // Homepage + login screen
 
 // Query Msg on Homepage
@@ -111,8 +106,8 @@ app.post('/login', bodyParser.urlencoded({extended: true}), ( req, res ) => {
         where: {
             email: req.body.email
         }
-    }).then(function (user) {
-        if (user !== null && req.body.password === user.password) {
+    }).then( function ( user ) {
+        if ( user !== null && req.body.password === user.password ) {
             req.session.user = user;
             res.redirect('/profile');
         } else {
@@ -121,29 +116,87 @@ app.post('/login', bodyParser.urlencoded({extended: true}), ( req, res ) => {
     }, function (error) {
         res.redirect('/index/?message=' + encodeURIComponent("Invalid email or password."));
     });
-});
-
-// Registration dubble???
-// app.get( '/index', ( request, response ) => {
-//   console.log( 'adding user' )
-//   response.render( 'profile' )
-// })
+    User.create({
+            name: req.body.username,
+            email: req.body.email,
+            password: req.body.password
+        }).then(function () {
+        res.redirect( '/index/?message=' + encodeURIComponent("You can now log in to view your profile."))
+      })
+   
+})
 
 // Logout button
-app.get('/logout', (req, res) => {
-    req.session.destroy(function(error) {
-        if(error) {
+
+app.get( '/logout', ( req, res ) => {
+    req.session.destroy( function( error ) {
+        if( error ) {
             throw error;
         }
-        res.redirect('/index/?message=' + encodeURIComponent("Successfully logged out."));
+        res.redirect( '/index' );
     })
 });
+
+
+// Will be redirected to this page after signing up
+
+
+
+
+
+
+
+
+// why doesn't this work??????????????????
+
+ 
+
+// let createUser = function (req, res) {
+//     var newUser = {
+//         name: req.body.username,
+//         email: req.body.email,
+//         password: req.body.password
+//     }
+//     User.create(newUser).success( function () {
+//         res.send(200);
+//     })
+// }
+
+
+// app.post( '/index', ( req, res ) => {
+//     // Inserting Data into User table
+//     sequelize.query( "INSERT INTO User( name, email, password ) values ($1, $2, $3)", [req.body.name, req.body.email, req.body.password], ( err, results ) => {
+//             console.log( 'making query' )
+//             if ( error ) {
+//                 throw error
+//     }   
+//     res.redirect( '/index/?message=' + encodeURIComponent("You can now log in to view your profile."))    
+// })
+
+
+// app.post( '/index', ( req, res ) => {
+//     // Inserting Data into User table
+//     if( req.body.name !== null && req.body.email !== null && req.body.password !== null ) {
+//         res.redirect( '/index/?message=' + encodeURIComponent("You can now log in to view your profile."))    
+//     }
+//     .then( function () => {
+//         User.create({
+//             name: '',
+//             email: '',
+//             password: ''
+//         })
+//     })
+// })
+
+
+
+
 
 // app.get( '/messages', ( request, response ) => {
 //   console.log( 'Viewing messages' ) 
 //       client.query( 'SELECT * FROM msg',  ( error, result ) => {
 //         console.log( 'reading msgs' )
-//         if ( error ) {
+//         if ( error ) 
 //           throw error
 //         }
 //         console.log(result.rows)
@@ -184,6 +237,7 @@ app.get('/logout', (req, res) => {
 seq.sync( {force: false} ).then( seq => {
   console.log( 'Synced' )
 })
+
 //   User.create({
 //         name: "Kei",
 //         email: "mo@ru",
@@ -204,7 +258,4 @@ seq.sync( {force: false} ).then( seq => {
 app.listen(8000, () => {
 	console.log( 'Server running' )
 })
-
-
-
 
