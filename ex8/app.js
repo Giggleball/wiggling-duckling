@@ -90,7 +90,7 @@ app.get('/profile', function ( req, res ) {
     }
 });
 
-// Login form
+// Login form + signup form
 app.post('/login', bodyParser.urlencoded({extended: true}), ( req, res ) => {
     if(req.body.email.length === 0) {
         res.redirect('/index/?message=' + encodeURIComponent("Please fill out your email address."));
@@ -208,28 +208,28 @@ app.get( '/logout', ( req, res ) => {
 // })
 // // API's?? Post page containing all messages with the user names
 
-// app.post( '/messages', (req, res ) => {
-//   Messages.findAll( {
-//   include: [ {
-//     model: User,
-//     attributes: [ 'name' ]
-//   } ]
-//   } ).then( messages  => {
-//     res.redirect( '/messages')
-//   })
-// })
+app.post( '/messages', (req, res ) => {
+  Messages.findAll( {
+  include: [ {
+    model: User,
+    attributes: [ 'name' ]
+  } ]
+  } ).then( messages  => {
+    res.redirect( '/messages')
+  })
+})
 
 // // Profile page of the user with all their posts & comments
 
-// app.post( '/profile', (req, res) => {
-//   User.findAll( {
-//     attributes: [ 'name' ],
-//     include: [ Messages ],
-//     include: [ Comments ]
-//   }).then( users => {
-//     res.redirect( '/profile' )
-//   })
-// })
+app.post( '/profile', (req, res) => {
+  User.findAll( {
+    attributes: [ 'name' ],
+    include: [ Messages ],
+    include: [ Comments ]
+  }).then( users => {
+    res.redirect( '/profile' )
+  })
+})
 
 
 // Create users

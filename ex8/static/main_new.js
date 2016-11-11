@@ -6,13 +6,11 @@ $(document).ready(function () {
 		}
 	});
 	
-
-	
 	// Show only one form
 	$("#first").hide(function() {
 		console.log("joehoe")
 	})
-	
+
 	// On Click SignUp It Will Hide Login Form and Display Registration form
 	$("#signup").click(function() {
 		$("#first").slideUp("slow", function() {
