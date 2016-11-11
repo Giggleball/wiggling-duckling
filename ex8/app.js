@@ -49,7 +49,8 @@ let User = seq.define('user', {
 })
 
 let Messages = seq.define( 'messages', {
-  body: sequelize.STRING
+    title: sequelize.STRING
+    body: sequelize.STRING
 })
 
 let Comments = seq.define( 'comments', {
@@ -61,6 +62,7 @@ let Comments = seq.define( 'comments', {
 
 User.hasMany( Messages )
 User.hasMany( Comments )
+Messages.hasMany ( Comments )
 Messages.belongsTo( User )
 Comments.belongsTo( User )
 Comments.belongsTo( Messages )
@@ -87,9 +89,36 @@ app.get('/profile', function ( req, res ) {
     } else {
         res.render('profile', {
             user: user
-        });
+        })
     }
+})
+
+
+// Messageboard request
+app.get( '/messages', ( request, response ) => {
+    console.log( 'Viewing messages' ) 
+        Messages.findAll( {
+            include: [ {
+                model: User,
+                attributes: [ 'name' ]
+            } ]
+        } ).then( messages  => {
+            res.redirect( '/messages')
+        })
+})
+
+
+// Logout button
+
+app.get( '/logout', ( req, res ) => {
+    req.session.destroy( function( error ) {
+        if( error ) {
+            throw error;
+        }
+        res.redirect( '/index' );
+    })
 });
+
 
 // Login form + signup form
 app.post('/login', bodyParser.urlencoded({extended: true}), ( req, res ) => {
@@ -127,99 +156,19 @@ app.post('/login', bodyParser.urlencoded({extended: true}), ( req, res ) => {
    
 })
 
-// Logout button
 
-app.get( '/logout', ( req, res ) => {
-    req.session.destroy( function( error ) {
-        if( error ) {
-            throw error;
-        }
-        res.redirect( '/index' );
+// Posting to the messageboard
+app.post( '/login', (req, res ) => {
+    User.createMessage ({
+            title: req.body.body,
+            body: req.body.body
+        }).then(function () {
+        res.redirect( '/messages')
+      })
     })
-});
-
-
-// Will be redirected to this page after signing up
-
-
-
-
-
-
-
-
-// why doesn't this work??????????????????
-
- 
-
-// let createUser = function (req, res) {
-//     var newUser = {
-//         name: req.body.username,
-//         email: req.body.email,
-//         password: req.body.password
-//     }
-//     User.create(newUser).success( function () {
-//         res.send(200);
-//     })
-// }
-
-
-// app.post( '/index', ( req, res ) => {
-//     // Inserting Data into User table
-//     sequelize.query( "INSERT INTO User( name, email, password ) values ($1, $2, $3)", [req.body.name, req.body.email, req.body.password], ( err, results ) => {
-//             console.log( 'making query' )
-//             if ( error ) {
-//                 throw error
-//     }   
-//     res.redirect( '/index/?message=' + encodeURIComponent("You can now log in to view your profile."))    
-// })
-
-
-// app.post( '/index', ( req, res ) => {
-//     // Inserting Data into User table
-//     if( req.body.name !== null && req.body.email !== null && req.body.password !== null ) {
-//         res.redirect( '/index/?message=' + encodeURIComponent("You can now log in to view your profile."))    
-//     }
-//     .then( function () => {
-//         User.create({
-//             name: '',
-//             email: '',
-//             password: ''
-//         })
-//     })
-// })
-
-
-
-
-
-// app.get( '/messages', ( request, response ) => {
-//   console.log( 'Viewing messages' ) 
-//       client.query( 'SELECT * FROM msg',  ( error, result ) => {
-//         console.log( 'reading msgs' )
-//         if ( error ) 
-//           throw error
-//         }
-//         console.log(result.rows)
-//         done()
-//         pg.end()
-//         response.render( 'posts', { body: result.rows } )
-//       })
-//   })
-// })
-// // API's?? Post page containing all messages with the user names
-
-app.post( '/messages', (req, res ) => {
-  Messages.findAll( {
-  include: [ {
-    model: User,
-    attributes: [ 'name' ]
-  } ]
-  } ).then( messages  => {
-    res.redirect( '/messages')
-  })
 })
 
+  
 // // Profile page of the user with all their posts & comments
 
 app.post( '/profile', (req, res) => {
@@ -260,3 +209,12 @@ app.listen(8000, () => {
 	console.log( 'Server running' )
 })
 
+
+
+// Will be redirected to this page after signing up
+
+
+// why doesn't this work??????????????????
+
+
+// // API's?? Post page containing all messages with the user names
