@@ -3,25 +3,17 @@ const express = require( 'express' )
 
 const app = express()
 
-const pg = require( 'pg' )
-
 const bodyParser = require( 'body-parser' )
 
-const session = require('express-session')
+const session = require( 'express-session' )
 
-const sequelize = require('sequelize')
+const sequelize = require( 'sequelize' )
 
 const seq = new sequelize( 'postgres://' + process.env.POSTGRES_USER + '@localhost/soap');
 
-// The new method doesn't seem to work in EV mode `_`
-// const seq = new sequelize('soap', 'process.env.POSTGRES_USER', 'process.env.POSTGRES_PASSWORD', {
-//   server: 'localhost',
-//   dialect: 'postgres'
-// });
-
 
 //static will become default and overwrite /home
-app.use( express.static( 'static') )
+app.use( express.static( 'static' ) )
 
 // Need this to use the middleware & sessions
 app.use( bodyParser.urlencoded({ extended: true }))
@@ -41,95 +33,112 @@ app.set( 'views', __dirname + '/views' )
 // Define database structure
 
 // Define models
-
 let User = seq.define('user', {
     name: sequelize.STRING,
     email: { type: sequelize.STRING, unique: true },
     password: sequelize.STRING
 })
 
-let Messages = seq.define( 'messages', {
-    title: sequelize.STRING
+let Message = seq.define( 'message', {
+    title: sequelize.STRING,
     body: sequelize.STRING
 })
 
-let Comments = seq.define( 'comments', {
-  body: sequelize.STRING,
+let Comment = seq.define( 'comments', {
+  body: sequelize.STRING
 })
 
 
 // Define relations
-
-User.hasMany( Messages )
-User.hasMany( Comments )
-Messages.hasMany ( Comments )
-Messages.belongsTo( User )
-Comments.belongsTo( User )
-Comments.belongsTo( Messages )
+User.hasMany( Message )
+User.hasMany( Comment )
+Message.hasMany ( Comment )
+Message.belongsTo( User )
+Comment.belongsTo( User )
+Comment.belongsTo( Message )
 
 
 // Set express routes
 
 // Homepage + login screen
-
-// Query Msg on Homepage
 app.get( '/index', ( req, res ) => {
 	console.log( 'Homepage' )	
 	res.render( 'index', {
-        message: req.query.message,
         user: req.session.user
     })
 })
 
-// Profile request
-app.get('/profile', function ( req, res ) {
-    let user = req.session.user;
-    if (user === undefined) {
-        res.redirect('/index/?message=' + encodeURIComponent("Please log in to view your profile."));
-    } else {
-        res.render('profile', {
-            user: user
-        })
-    }
+
+// All messages
+app.get( '/comments', ( req, res ) => {
+    console.log( 'Viewing messages' ) 
+    Message.findAll({
+        include: [{
+            model: User,
+            attributes: [ 'name' ]
+        }]
+    }).then( ( message )  => {
+        // console.log( message )
+        res.render( 'comments', { body: message } )
+    })
 })
 
 
-// Messageboard request
-app.get( '/messages', ( request, response ) => {
-    console.log( 'Viewing messages' ) 
-        Messages.findAll( {
-            include: [ {
-                model: User,
-                attributes: [ 'name' ]
-            } ]
-        } ).then( messages  => {
-            res.redirect( '/messages')
+// Viewing profile + all your messages
+app.get('/profile', function ( req, res ) {
+    let User = req.session.user;
+    if (User === undefined) {
+        res.redirect('/index')
+    } else {
+        res.render('profile', {
+            user: User
         })
+    }
 })
 
 
 // Logout button
-
 app.get( '/logout', ( req, res ) => {
     req.session.destroy( function( error ) {
         if( error ) {
-            throw error;
+            throw error
         }
-        res.redirect( '/index' );
+        res.redirect( '/index' )
     })
 });
 
 
+// Post page
+app.get( '/post', ( req, res ) => {
+    console.log( 'leaving a post' )
+    res.render( 'post', {
+        User: req.session.user
+    })
+})
+
+
 // Login form + signup form
+app.get( '/login', ( req, res ) => {
+    console.log( 'logged in' )
+    res.render( 'login', {
+        User: req.session.user
+    })
+})
+
+
+app.post( '/register', ( req, res ) => {
+    console.log( 'registered  sucessfully' )
+    res.render( 'register' )
+})
+
+
 app.post('/login', bodyParser.urlencoded({extended: true}), ( req, res ) => {
     if(req.body.email.length === 0) {
-        res.redirect('/index/?message=' + encodeURIComponent("Please fill out your email address."));
-        return;
+        res.redirect('/index')
     }
 
     if(req.body.password.length === 0) {
-        res.redirect('/index/?message=' + encodeURIComponent("Please fill out your password."));
-        return;
+        res.redirect('/index')
     }
 
     User.findOne({
@@ -137,84 +146,85 @@ app.post('/login', bodyParser.urlencoded({extended: true}), ( req, res ) => {
             email: req.body.email
         }
     }).then( function ( user ) {
-        if ( user !== null && req.body.password === user.password ) {
-            req.session.user = user;
-            res.redirect('/profile');
+        if ( User !== null && req.body.password === User.password ) {
+            req.session.user = User;
+            res.redirect('/login');
         } else {
-            res.redirect('/index/?message=' + encodeURIComponent("Invalid email or password."));
+            res.redirect('/index')
         }
     }, function (error) {
-        res.redirect('/index/?message=' + encodeURIComponent("Invalid email or password."));
-    });
+        res.redirect('/index')
+    })
     User.create({
-            name: req.body.username,
+            name: req.body.name,
             email: req.body.email,
             password: req.body.password
-        }).then(function () {
-        res.redirect( '/index/?message=' + encodeURIComponent("You can now log in to view your profile."))
+        }).then( function () {
+        res.render( 'register' )
       })
-   
 })
 
 
 // Posting to the messageboard
-app.post( '/login', (req, res ) => {
-    User.createMessage ({
-            title: req.body.body,
+app.post( '/post', (req, res ) => {
+
+    User.findOne({
+        where: { 
+            user: req.session.user.id
+        }
+    }).then( thisUser => {
+        thisUser.createMessage({
+            title: req.body.title,
             body: req.body.body
-        }).then(function () {
-        res.redirect( '/messages')
-      })
+        }).then( () => {
+            seq.sync().then( () => {
+            res.redirect( '/comments' )
+            })
+        })
     })
 })
 
-  
-// // Profile page of the user with all their posts & comments
 
-app.post( '/profile', (req, res) => {
-  User.findAll( {
-    attributes: [ 'name' ],
-    include: [ Messages ],
-    include: [ Comments ]
-  }).then( users => {
-    res.redirect( '/profile' )
-  })
-})
+// Sync database
+seq.sync( {force: true} ).then(function () {
+    User.create({ // INSERT INTO "people" ("id","name") VALUES (DEFAULT,'bubbles') RETURNING *;
+        name: 'Mua',
+        email: 'mua@mua',
+        password: 'mua'
+    }).then( ( user ) => { // INSERT INTO "messages" ("id","body","personId") VALUES (DEFAULT,'i like trains',1) RETURNING *;
+        user.createMessage({
+            title: 'Ohaiyo!',
+            body: 'I saw two bunnies !!!'
+        })
+    }).then
+    User.create({ // INSERT INTO "people" ("id","name") VALUES (DEFAULT,'bubbles') RETURNING *;
+        name: 'Cat',
+        email: 'miaw@miaw',
+        password: 'miaw'
+    }).then( ( user ) => { // INSERT INTO "messages" ("id","body","personId") VALUES (DEFAULT,'i like trains',1) RETURNING *;
+        user.createMessage({
+            title: 'Konbanwa!',
+            body: 'I will have peanutbutter today !!!'
+        })
+    }).then 
+            User.create({ // INSERT INTO "people" ("id","name") VALUES (DEFAULT,'bubbles') RETURNING *;
+        name: 'Tom',
+        email: 'tom@mtom',
+        password: 'tom'
+    }).then( ( user ) => { // INSERT INTO "messages" ("id","body","personId") VALUES (DEFAULT,'i like trains',1) RETURNING *;
+        user.createMessage({
+            title: 'Anneyong!',
+            body: 'I will do the pho challenge today !!!'
+    })
+    })
+})    
 
-
-// Create users
-
-seq.sync( {force: false} ).then( seq => {
-  console.log( 'Synced' )
-})
-
-//   User.create({
-//         name: "Kei",
-//         email: "mo@ru",
-//         password: "boem"
-//     }).then(function () {
-//         var server = app.listen(8000, function () {
-//             console.log('Example app listening on port: ' + server.address().port);
-//         });
-//     });
-
-// }, function (error) {
-//     console.log('sync failed: ');
-//     console.log(error);
-// })
-
-// Server responding 
 
 app.listen(8000, () => {
-	console.log( 'Server running' )
+    console.log( 'Server running' )
 })
 
 
 
-// Will be redirected to this page after signing up
 
 
-// why doesn't this work??????????????????
-
-
-// // API's?? Post page containing all messages with the user names

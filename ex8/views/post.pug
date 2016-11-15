@@ -1,23 +1,24 @@
-html
+doctype html
+html(lang='en')
 	head
 		meta(charset='utf-8')
 		meta(http-equiv='X-UA-Compatible', content='IE=edge')
 		meta(name='viewport', content='width=device-width, initial-scale=1')
 		meta(name='description', content='')
 		meta(name='author', content='')
-		title Creative - Start Smiling
+		title Creative - Creative - Start Smiling
 		// Bootstrap Core CSS
 		link(href='vendor/bootstrap/css/bootstrap.min.css', rel='stylesheet')
 		// Custom Fonts
 		link(href='vendor/font-awesome/css/font-awesome.min.css', rel='stylesheet', type='text/css')
 		link(href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800', rel='stylesheet', type='text/css')
 		link(href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic', rel='stylesheet', type='text/css')
+		link(href="https://fonts.googleapis.com/css?family=Josefin+Slab" rel="stylesheet")
 		// Plugin CSS
 		link(href='vendor/magnific-popup/magnific-popup.css', rel='stylesheet')
 		// Theme CSS
 		link(href='css/creative.min.css', rel='stylesheet')
 		link(href='css/style.css', rel='stylesheet')
-		link(href='style_new.css', rel='stylesheet')
 		// HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
 		// WARNING: Respond.js doesn't work if you view the page via file://
 		//if lt IE 9
@@ -39,30 +40,36 @@ html
 						li
 							a(href='http://localhost:8000/index') Home
 						li
-							a(href='#http://localhost:8000/profile') Profile
+							a(href='http://localhost:8000/profile') Profile
 						li
-							a(href='#http://localhost:8000/post') Post
+							a(href='http://localhost:8000/comments') Messages
 						li
-							a(href='#http://localhost:8000/logout') Logout
+							a(href='http://localhost:8000/logout') Logout
 				// /.navbar-collapse
 			// /.container-fluid
 		header
 			.header-content
 				.header-content-inner
-					h1#homeHeading Your Favorite Source of Daily Messages
+					h1#homeHeading Your Favorite Source of Free Bootstrap Themes
 					hr
-		h2= user.name
-		h3= user.email
-
-		a(href='/index') home
-		br
-		a(href='/index') log out
-
-
+		section#about.bg-primary
+			.container
+				.row
+					.col-lg-8.col-lg-offset-2.text-center
+						h2.text-faded Leave us a message!
+							br
+							user
+							a(href='/index')
+							div#third
+								form.center-block(id='searchCriteria', method='POST', action='/comments', autocomplete='off')
+									br
+									input.top.form-control(id='title', type='text', name='title', placeholder='Title')
+									br
+									input.top.form-control(id='message', type='text', name='body', rows="3", placeholder='What made you smile today?')
+									br
+									input.btn(type="submit", value="submit")
 		// jQuery
-		script(type="text/javascript" src="jquery-3.1.1.min.js")
-		
-		script(src='main_new.js')
+		script(src='vendor/jquery/jquery.min.js')
 		// Bootstrap Core JavaScript
 		script(src='vendor/bootstrap/js/bootstrap.min.js')
 		// Plugin JavaScript

@@ -1,5 +1,4 @@
-doctype html
-html(lang='en')
+html
 	head
 		meta(charset='utf-8')
 		meta(http-equiv='X-UA-Compatible', content='IE=edge')
@@ -38,13 +37,13 @@ html(lang='en')
 				#bs-example-navbar-collapse-1.collapse.navbar-collapse
 					ul.nav.navbar-nav.navbar-right
 						li
-							a.page-scroll(href='http://localhost:8000/posts') Messageboard
+							a(href='http://localhost:8000/index') Home
 						li
-							a.page-scroll(href='#services') Sharing is caring
+							a(href='http://localhost:8000/profile') Profile
 						li
-							a.page-scroll(href='#portfolio') Daily Picks
+							a(href='http://localhost:8000/post') Post
 						li
-							a.page-scroll(href='#contact') Contact
+							a(href='http://localhost:8000/logout') Logout
 				// /.navbar-collapse
 			// /.container-fluid
 		header
@@ -53,11 +52,6 @@ html(lang='en')
 					h1#homeHeading Your Favorite Source of Daily Messages
 					hr
 					.col-lg-8.col-lg-offset-2.text-center
-						if user
-							a(href='/profile') view profile
-							br
-							a(href='/logout') log out
-						else
 							div#first
 								form.center-block(action='/login' method='post')
 									h3.text-faded Login to your GiggleSmile.
@@ -77,7 +71,7 @@ html(lang='en')
 									| Don't have account? 
 									a#signup.signup(href='#') Sign up here
 							div#second
-								form.center-block(action='/login' method='post')
+								form.center-block(action='/register' method='post')
 									h3.text-faded Create a Free GiggleSmile!
 									br
 									label.center
@@ -100,127 +94,8 @@ html(lang='en')
 									br
 									| Already have an account? 
 									a#signin.signin(href='#') Sign in
-							h2#error-message= message			
-			
-		section#about.bg-primary
-			.container
-				.row
-					.col-lg-8.col-lg-offset-2.text-center
-						h2.text-faded Leave us a message!
-							br
-							if user
-								a(href='/index')
-								div#third
-									form.center-block(id='searchCriteria', method='POST', action='/messages', autocomplete='off')
-										br
-										input.top.form-control(id='title', type='text', name='title', placeholder='Title')
-										br
-										input.top.form-control(id='message', type='text', name='body', rows="3", placeholder='What made you smile today?')
-										br
-										input.btn(type="submit", value="submit")
-							else
-								br
-								p Please sign in to leave a message!	
-		section#services
-			.container
-				.row
-					.col-lg-12.text-center
-						h2.section-heading Don't be shy!
-						hr.primary
-			.container
-				.row
-					.col-lg-3.col-md-6.text-center
-						.service-box
-							i.fa.fa-4x.fa-diamond.text-primary.sr-icons
-							h3 Long Day?
-							p.text-muted What have you been up to today?
-					.col-lg-3.col-md-6.text-center
-						.service-box
-							i.fa.fa-4x.fa-paper-plane.text-primary.sr-icons
-							h3 Travel Stories
-							p.text-muted A lot can happen by just taking a walk around the block.
-					.col-lg-3.col-md-6.text-center
-						.service-box
-							i.fa.fa-4x.fa-newspaper-o.text-primary.sr-icons
-							h3 Up to Date
-							p.text-muted Any news you'd like to share feel free to!
-					.col-lg-3.col-md-6.text-center
-						.service-box
-							i.fa.fa-4x.fa-heart.text-primary.sr-icons
-							h3 Made with Love
-							p.text-muted Share cutest and sweetest things you've encountered.
-		section#portfolio.no-padding
-			.container-fluid
-				.row.no-gutter.popup-gallery
-					.col-lg-4.col-sm-6
-						a.portfolio-box(href='img/portfolio/fullsize/1.jpg')
-							img.img-responsive(src='img/portfolio/thumbnails/1.jpg', alt='')
-							.portfolio-box-caption
-								.portfolio-box-caption-content
-									.project-category.text-faded
-										| Random
-									.project-name
-										| 
-					.col-lg-4.col-sm-6
-						a.portfolio-box(href='img/portfolio/fullsize/2.jpg')
-							img.img-responsive(src='img/portfolio/thumbnails/2.jpg', alt='')
-							.portfolio-box-caption
-								.portfolio-box-caption-content
-									.project-category.text-faded
-										| Local
-									.project-name
-										| 
-					.col-lg-4.col-sm-6
-						a.portfolio-box(href='img/portfolio/fullsize/3.jpg')
-							img.img-responsive(src='img/portfolio/thumbnails/3.jpg', alt='')
-							.portfolio-box-caption
-								.portfolio-box-caption-content
-									.project-category.text-faded
-										| Capture the Moment
-									.project-name
-										| 
-					.col-lg-4.col-sm-6
-						a.portfolio-box(href='img/portfolio/fullsize/4.jpg')
-							img.img-responsive(src='img/portfolio/thumbnails/4.jpg', alt='')
-							.portfolio-box-caption
-								.portfolio-box-caption-content
-									.project-category.text-faded
-										| Inspiration
-									.project-name
-										| 
-					.col-lg-4.col-sm-6
-						a.portfolio-box(href='img/portfolio/fullsize/5.jpg')
-							img.img-responsive(src='img/portfolio/thumbnails/5.jpg', alt='')
-							.portfolio-box-caption
-								.portfolio-box-caption-content
-									.project-category.text-faded
-										| Dreams
-									.project-name
-										| 
-					.col-lg-4.col-sm-6
-						a.portfolio-box(href='img/portfolio/fullsize/6.jpg')
-							img.img-responsive(src='img/portfolio/thumbnails/6.jpg', alt='')
-							.portfolio-box-caption
-								.portfolio-box-caption-content
-									.project-category.text-faded
-										| Friendship
-									.project-name
-										| 
-		section#contact
-			.container
-				.row
-					.col-lg-8.col-lg-offset-2.text-center
-						h2.section-heading Let's Get In Touch!
-						hr.primary
-						p
-							| Did this page put a smile on your face, or do you just want to share something with me? Don't be shy!
-					.col-lg-4.col-lg-offset-2.text-center
-						i.fa.fa-phone.fa-3x.sr-contact
-						p coming soon
-					.col-lg-4.text-center
-						i.fa.fa-envelope-o.fa-3x.sr-contact
-						p
-							a(href='mailto:your-email@your-domain.com') coming soon
+							h2#error-message= message						
+		
 		// jQuery
 		script(type="text/javascript" src="jquery-3.1.1.min.js")
 		
@@ -233,3 +108,5 @@ html(lang='en')
 		script(src='vendor/magnific-popup/jquery.magnific-popup.min.js')
 		// Theme JavaScript
 		script(src='js/creative.min.js')
+
+

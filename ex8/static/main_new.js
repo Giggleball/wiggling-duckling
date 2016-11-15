@@ -5,11 +5,12 @@ $(document).ready(function () {
 			$('#error-message').html("Your username or password is empty.");
 		}
 	});
+
 	
 	// Show only one form
-	$("#first").hide(function() {
-		console.log("joehoe")
+	$("#second").hide(function() {
 	})
+
 
 	// On Click SignUp It Will Hide Login Form and Display Registration form
 	$("#signup").click(function() {
@@ -18,6 +19,7 @@ $(document).ready(function () {
 		});
 	});
 
+
 	// On Click SignIn It Will Hide Registration Form and Display Login Form
 	$("#signin").click(function() {
 		$("#second").slideUp("slow", function() {
@@ -25,3 +27,4 @@ $(document).ready(function () {
 		});
 	});
 });
+

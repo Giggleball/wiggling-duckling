@@ -6,19 +6,19 @@ html(lang='en')
 		meta(name='viewport', content='width=device-width, initial-scale=1')
 		meta(name='description', content='')
 		meta(name='author', content='')
-		title Creative - Creative - Start Smiling
+		title Creative - Start Smiling
 		// Bootstrap Core CSS
 		link(href='vendor/bootstrap/css/bootstrap.min.css', rel='stylesheet')
 		// Custom Fonts
 		link(href='vendor/font-awesome/css/font-awesome.min.css', rel='stylesheet', type='text/css')
 		link(href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800', rel='stylesheet', type='text/css')
 		link(href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic', rel='stylesheet', type='text/css')
-		link(href="https://fonts.googleapis.com/css?family=Josefin+Slab" rel="stylesheet")
 		// Plugin CSS
 		link(href='vendor/magnific-popup/magnific-popup.css', rel='stylesheet')
 		// Theme CSS
 		link(href='css/creative.min.css', rel='stylesheet')
 		link(href='css/style.css', rel='stylesheet')
+		link(href='style_new.css', rel='stylesheet')
 		// HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
 		// WARNING: Respond.js doesn't work if you view the page via file://
 		//if lt IE 9
@@ -38,7 +38,7 @@ html(lang='en')
 				#bs-example-navbar-collapse-1.collapse.navbar-collapse
 					ul.nav.navbar-nav.navbar-right
 						li
-							a.page-scroll(href='http://localhost:8000/posts') Messageboard
+							a.page-scroll(href='http://localhost:8000/messages') Messageboard
 						li
 							a.page-scroll(href='#services') Sharing is caring
 						li
@@ -50,21 +50,77 @@ html(lang='en')
 		header
 			.header-content
 				.header-content-inner
-					h1#homeHeading Your Favorite Source of Free Bootstrap Themes
+					h1#homeHeading Your Favorite Source of Daily Messages
 					hr
+					.col-lg-8.col-lg-offset-2.text-center
+						if user
+							a(href='/profile') view profile
+							br
+							a(href='/logout') log out
+						else
+							div#first
+								form.center-block(action='/login' method='post')
+									h3.text-faded Login to your GiggleSmile.
+									br
+									label.center
+									input#email(name='email', placeholder='email')
+									br
+									br
+									label.center
+									input#password(type='password', name='password', placeholder='password' required)
+									br
+									br
+									button.btn(type='submit') Login
+									h4
+									a(href='#') Forgot Password ?
+									br
+									| Don't have account? 
+									a#signup.signup(href='#') Sign up here
+							div#second
+								form.center-block(action='/login' method='post')
+									h3.text-faded Create a Free GiggleSmile!
+									br
+									label.center
+									input#name(name='name', placeholder='First name')
+									br
+									br
+									label.center
+									input#email(name='email', placeholder='email')
+									br
+									br
+									label.center
+									input#password(type='password', name='password', placeholder='password' required)
+
+									br 
+
+									br
+									button.btn(type='submit') Sign Up
+									h4
+									a(href='#') Forgot Password ?
+									br
+									| Already have an account? 
+									a#signin.signin(href='#') Sign in
+							h2#error-message= message			
+			
 		section#about.bg-primary
 			.container
 				.row
 					.col-lg-8.col-lg-offset-2.text-center
-						h2.section-heading Read all messages!
-						hr.light
-						p.text-faded
-						each result in body
-							li.mer.list-unstyled #{result.title} 
-							li.mer.list-unstyled #{result.body}
+						h2.text-faded Leave us a message!
 							br
-							br
-						a.page-scroll.btn.btn-default.btn-xl.sr-button(href='http://localhost:8000/index') Go back to the Homepage!
+							if user
+								a(href='/index')
+								div#third
+									form.center-block(id='searchCriteria', method='POST', action='/messages', autocomplete='off')
+										br
+										input.top.form-control(id='title', type='text', name='title', placeholder='Title')
+										br
+										input.top.form-control(id='message', type='text', name='body', rows="3", placeholder='What made you smile today?')
+										br
+										input.btn(type="submit", value="submit")
+							else
+								br
+								p Please sign in to leave a message!	
 		section#services
 			.container
 				.row
@@ -166,7 +222,9 @@ html(lang='en')
 						p
 							a(href='mailto:your-email@your-domain.com') coming soon
 		// jQuery
-		script(src='vendor/jquery/jquery.min.js')
+		script(type="text/javascript" src="jquery-3.1.1.min.js")
+		
+		script(src='main_new.js')
 		// Bootstrap Core JavaScript
 		script(src='vendor/bootstrap/js/bootstrap.min.js')
 		// Plugin JavaScript
