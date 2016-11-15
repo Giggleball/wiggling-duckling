@@ -164,14 +164,12 @@ app.post('/login', bodyParser.urlencoded({extended: true}), ( req, res ) => {
             email: req.body.email
         }
     }).then( function ( user ) {
-        if ( User !== null && req.body.password === User.password ) {
-            req.session.user = User;
-            res.redirect('/login');
+        if ( user !== null && req.body.password === user.password ) {
+            req.session.user = user 
+            res.redirect('/comments')
         } else {
             res.redirect('/index')
         }
-    }, function (error) {
-        res.redirect('/index')
     })
 })
 
