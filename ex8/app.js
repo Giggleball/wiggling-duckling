@@ -127,6 +127,24 @@ app.get( '/login', ( req, res ) => {
 
 
 app.post( '/register', ( req, res ) => {
+    if(req.body.name.length === 0) {
+        res.redirect('/index')
+    }
+
+    if(req.body.password.length === 0) {
+        res.redirect('/index')
+    }
+
+    if(req.body.email.length === 0) {
+        res.redirect('/index')
+    }
+    User.create({
+            name: req.body.name,
+            email: req.body.email,
+            password: req.body.password
+        }).then( function () {
+        res.render( 'register' )
+      })
     console.log( 'registered  sucessfully' )
     res.render( 'register' )
 })
@@ -155,13 +173,6 @@ app.post('/login', bodyParser.urlencoded({extended: true}), ( req, res ) => {
     }, function (error) {
         res.redirect('/index')
     })
-    User.create({
-            name: req.body.name,
-            email: req.body.email,
-            password: req.body.password
-        }).then( function () {
-        res.render( 'register' )
-      })
 })
 
 
