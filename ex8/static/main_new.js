@@ -6,6 +6,9 @@ $(document).ready(function () {
 		}
 	});
 
+   	// Hide the reply form until someone clicks 'reply'
+	$("#reply").hide(function() {
+	})
 	
 	// Show only one form
 	$("#second").hide(function() {
@@ -25,6 +28,14 @@ $(document).ready(function () {
 		$("#second").slideUp("slow", function() {
 			$("#first").slideDown("slow");
 		});
+	});
+
+
+	// Display reply form
+	$("#hideme").click(function() {
+		$('#reply').show(function() {
+	});
+
 	});
 });
 

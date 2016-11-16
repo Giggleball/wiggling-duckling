@@ -1,15 +1,26 @@
 // Import necessary modules
-const express = require( 'express' )
+const express    = require( 'express' )
 
-const app = express()
+const app        = express()
 
 const bodyParser = require( 'body-parser' )
 
-const session = require( 'express-session' )
+const session    = require( 'express-session' )
 
-const sequelize = require( 'sequelize' )
+const sequelize  = require( 'sequelize' )
 
-const seq = new sequelize( 'postgres://' + process.env.POSTGRES_USER + '@localhost/soap');
+const seq        = new sequelize( 'postgres://' + process.env.POSTGRES_USER + '@localhost/soap');
+
+const gulp       = require( 'gulp')  
+
+const watch      = require( './semantic/tasks/watch' )  
+
+const build      = require( './semantic/tasks/build' ) 
+
+
+// import task with a custom task name
+gulp.task('watch ui', watch)
+gulp.task('build ui', build)
 
 
 //static will become default and overwrite /home
@@ -175,19 +186,24 @@ app.post('/login', bodyParser.urlencoded({extended: true}), ( req, res ) => {
 
 
 // Posting to the messageboard
-app.post( '/post', (req, res ) => {
-
+app.post( '/comments', ( req, res ) => {
+    console.log(req.session.user)
     User.findOne({
         where: { 
-            user: req.session.user.id
+            email: req.session.user.email
         }
-    }).then( thisUser => {
-        thisUser.createMessage({
+    }).then( (thisuser) => {
+        console.log(thisuser)
+        thisuser.createMessage({
             title: req.body.title,
             body: req.body.body
-        }).then( () => {
-            seq.sync().then( () => {
-            res.redirect( '/comments' )
+        }).then( (thisuser) => {
+            thisuser.createComment({
+                body: req.body.body
+            }).then( () => {
+                seq.sync().then( () => {
+                res.redirect( '/comments' )
+                })
             })
         })
     })

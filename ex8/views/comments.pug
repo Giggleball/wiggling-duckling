@@ -45,13 +45,9 @@ html(lang='en')
 							a(href='http://localhost:8000/post') Post
 						li
 							a(href='http://localhost:8000/logout') Logout
-				// /.navbar-collapse
-			// /.container-fluid
-		header
-			.header-content
-				.header-content-inner
-					h1#homeHeading Your Favorite Source of Free Bootstrap Themes
-					hr
+				.navbar-collapse
+			.container-fluid
+
 		section#about.bg-primary
 			.container
 				.row
@@ -59,24 +55,30 @@ html(lang='en')
 						h2.section-heading Read all messages!
 						hr.light
 						p.text-fade
-						each message in body
-							li.mer.list-unstyled #{message.user.name}
-							li.te.mer.list-unstyled #{message.title} 
-							li.te.mer.list-unstyled #{message.body}
-							br
-							br
-							//- if message.comments
-							//- 	each comment in message.comments
-							
-						form.center-block(id='searchCriteria', method='POST', action='/index', autocomplete='off')
+						div
+							each message in body
+								li.mer.list-unstyled #{message.user.name}
+								div
+									li.tee.mer.list-unstyled #{message.title} 
+									div
+										li.tee.mer.list-unstyled #{message.body}
+										br
+										a#hideme.reply(href='#') Reply
+									div
+									if message.comments
+										each comment in message.comments
+											li.mer.list-unstyled #{comment.user.name}
+											div
+												li.mer.list-unstyled #{comment.body}
+						div#reply
+							form(id='ajax-contact', method='POST', action='/comments', autocomplete='off')
+								textarea.top.form-control(id='message', type='text', name='body', rows="3")
 								br
-								input.top.form-control(id='message', type='text', name='body', rows="3", placeholder='What made you smile today?')
-								br
-								input.btn(type="submit", value="submit")
-
-
+								input.btn(type="submit", value="Add reply")
 		// jQuery
+
 		script(src='vendor/jquery/jquery.min.js')
+		script(src='main_new.js')
 		// Bootstrap Core JavaScript
 		script(src='vendor/bootstrap/js/bootstrap.min.js')
 		// Plugin JavaScript
