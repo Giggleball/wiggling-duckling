@@ -70,7 +70,7 @@ app.get( '/', ( req, res ) => {
 
 
 // All messages
-app.get( '/comments', ( req, res ) => {
+app.get( '/messages', ( req, res ) => {
     console.log( 'Viewing messages' ) 
     Message.findAll({
         include: [ {
@@ -83,7 +83,7 @@ app.get( '/comments', ( req, res ) => {
         } ]
     }).then( ( message )  => {
         // console.log( message )
-        res.render( 'comments', { body: message, user: req.session.user} )
+        res.render( 'messages', { body: message, user: req.session.user} )
     })
 })
 
@@ -196,7 +196,7 @@ app.post('/login', bodyParser.urlencoded({extended: true}), ( req, res ) => {
     }).then( function ( user ) {
         if ( user !== null && req.body.password === user.password ) {
             req.session.user = user 
-            res.redirect('/comments')
+            res.redirect('/messages')
         } else {
             res.redirect('/')
         }
@@ -216,14 +216,14 @@ app.post( '/post', ( req, res ) => {
             title: req.body.title,
             body: req.body.body
         }).then( () => {
-            res.redirect( '/comments' )
+            res.redirect( '/messages' )
         })
     })
 })
 
 
 // Commenting to the messageboard
-app.post( '/comments', ( req, res ) => {
+app.post( '/messages', ( req, res ) => {
     console.log(req.session.user)
     User.findOne({
         where: { name: req.session.user.name },
@@ -234,7 +234,7 @@ app.post( '/comments', ( req, res ) => {
             body: req.body.body,
             messageId: req.body.post_id
         }).then( () => {
-            res.redirect( '/comments' )
+            res.redirect( '/messages' )
         })
     })
 })
