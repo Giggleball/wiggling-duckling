@@ -58,12 +58,10 @@ html(lang='en')
 						if user	
 							each message in body
 								li.mer.list-unstyled User: #{message.user.name}
-								div
-									li.tee.mer.list-unstyled Title: #{message.title} 
-									div
-										li.tee.mer.list-unstyled Message: #{message.body}
-										br
-										a.hideme(href='#') Reply
+								li.tee.mer.list-unstyled Title: #{message.title} 
+								li.tee.mer.list-unstyled Message: #{message.body}
+								br
+								a.hideme(href='#') Reply
 										
 									div.reply.id
 									if message.comments

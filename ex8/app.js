@@ -44,7 +44,7 @@ let Message = seq.define( 'message', {
     body: sequelize.STRING
 })
 
-let Comment = seq.define( 'comments', {
+let Comment = seq.define( 'comment', {
   body: sequelize.STRING
 })
 
@@ -73,15 +73,14 @@ app.get( '/', ( req, res ) => {
 app.get( '/comments', ( req, res ) => {
     console.log( 'Viewing messages' ) 
     Message.findAll({
-        include: [{
+        include: [ {
             model: User,
             attributes: [ 'name' ]
         },
         {
             model: Comment,
             attributes: [ 'body' ]
-        }
-        ]
+        } ]
     }).then( ( message )  => {
         // console.log( message )
         res.render( 'comments', { body: message, user: req.session.user} )
@@ -147,7 +146,7 @@ app.get( '/post', ( req, res ) => {
 })
 
 
-// Login form + signup form
+// Display login form + signup form
 app.get( '/login', ( req, res ) => {
     console.log( 'logged in' )
     res.render( 'login', {
@@ -156,6 +155,7 @@ app.get( '/login', ( req, res ) => {
 })
 
 
+// Register
 app.post( '/register', ( req, res ) => {
     if(req.body.name.length === 0) {
         res.redirect('/')
@@ -179,7 +179,7 @@ app.post( '/register', ( req, res ) => {
     res.render( 'register' )
 })
 
-
+// After Login 
 app.post('/login', bodyParser.urlencoded({extended: true}), ( req, res ) => {
     if(req.body.email.length === 0) {
         res.redirect('/')
@@ -205,6 +205,24 @@ app.post('/login', bodyParser.urlencoded({extended: true}), ( req, res ) => {
 
 
 // Posting to the messageboard
+app.post( '/post', ( req, res ) => {
+    console.log(req.session.user)
+    User.findOne({
+        where: { name: req.session.user.name },
+        order: '"createdAt" DESC'
+    }).then( ( thisuser ) => {
+        console.log(thisuser)
+        thisuser.createMessage({
+            title: req.body.title,
+            body: req.body.body
+        }).then( () => {
+            res.redirect( '/comments' )
+        })
+    })
+})
+
+
+// Commenting to the messageboard
 app.post( '/comments', ( req, res ) => {
     console.log(req.session.user)
     User.findOne({
@@ -257,6 +275,7 @@ seq.sync( {force: true} ).then(function () {
 })    
 
 
+// App will listen on 8000
 app.listen(8000, () => {
     console.log( 'Server running' )
 })
