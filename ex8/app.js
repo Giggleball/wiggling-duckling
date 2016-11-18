@@ -33,59 +33,59 @@ app.set( 'views', __dirname + '/views' )
 // Define database structure
 
 // Define models
-let User = seq.define('user', {
-    name: sequelize.STRING,
-    email: { type: sequelize.STRING, unique: true },
-    password: sequelize.STRING
-})
+// let User = seq.define('user', {
+//     name: sequelize.STRING,
+//     email: { type: sequelize.STRING, unique: true },
+//     password: sequelize.STRING
+// })
 
-let Message = seq.define( 'message', {
-    title: sequelize.STRING,
-    body: sequelize.STRING
-})
+// let Message = seq.define( 'message', {
+//     title: sequelize.STRING,
+//     body: sequelize.STRING
+// })
 
-let Comment = seq.define( 'comment', {
-  body: sequelize.STRING
-})
+// let Comment = seq.define( 'comment', {
+//   body: sequelize.STRING
+// })
 
 
 // Define relations
-User.hasMany( Message )
-User.hasMany( Comment )
-Message.hasMany ( Comment )
-Message.belongsTo( User )
-Comment.belongsTo( User )
-Comment.belongsTo( Message )
+// User.hasMany( Message )
+// User.hasMany( Comment )
+// Message.hasMany ( Comment )
+// Message.belongsTo( User )
+// Comment.belongsTo( User )
+// Comment.belongsTo( Message )
 
 
 // Set express routes
 
-// Homepage + login screen
-app.get( '/', ( req, res ) => {
-	console.log( 'Homepage' )	
-	res.render( 'index', {
-        user: req.session.user
-    })
-})
+// // Homepage + login screen
+// app.get( '/', ( req, res ) => {
+// 	console.log( 'Homepage' )	
+// 	res.render( 'index', {
+//         user: req.session.user
+//     })
+// })
 
 
-// All messages
-app.get( '/messages', ( req, res ) => {
-    console.log( 'Viewing messages' ) 
-    Message.findAll({
-        include: [ {
-            model: User,
-            attributes: [ 'name' ]
-        },
-        {
-            model: Comment,
-            attributes: [ 'body' ]
-        } ]
-    }).then( ( message )  => {
-        // console.log( message )
-        res.render( 'messages', { body: message, user: req.session.user} )
-    })
-})
+// // All messages
+// app.get( '/messages', ( req, res ) => {
+//     console.log( 'Viewing messages' ) 
+//     Message.findAll({
+//         include: [ {
+//             model: User,
+//             attributes: [ 'name' ]
+//         },
+//         {
+//             model: Comment,
+//             attributes: [ 'body' ]
+//         } ]
+//     }).then( ( message )  => {
+//         // console.log( message )
+//         res.render( 'messages', { body: message, user: req.session.user} )
+//     })
+// })
 
 
 // View current user + their messages and comments ^_^
