@@ -44,14 +44,16 @@ html
 							a(href='http://localhost:8000/post') Post
 						li
 							a(href='http://localhost:8000/logout') Logout
-				// /.navbar-collapse
-			// /.container-fluid
+				
 		header
 			.header-content
 				.header-content-inner
 					h1#homeHeading Your Favorite Source of Daily Messages
 					hr
 					.col-lg-8.col-lg-offset-2.text-center
+						if user 
+							h2 Welcome #{user.name}
+						else
 							div#first
 								form.center-block(action='/login' method='post')
 									h3.text-faded Login to your GiggleSmile.
@@ -69,8 +71,8 @@ html
 									a(href='#') Forgot Password ?
 									br
 									| Don't have account? 
-									a#signup.signup(href='#') Sign up here
-							div#second
+									a#signup(href='#') Sign up here
+							div#second.second
 								form.center-block(action='/register' method='post')
 									h3.text-faded Create a Free GiggleSmile!
 									br
@@ -93,7 +95,7 @@ html
 									a(href='#') Forgot Password ?
 									br
 									| Already have an account? 
-									a#signin.signin(href='#') Sign in
+									a#signin(href='#') Sign in
 							h2#error-message= message						
 		
 		// jQuery

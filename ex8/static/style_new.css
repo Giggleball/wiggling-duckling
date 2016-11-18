@@ -5,5 +5,14 @@
 }
 
 .tee {
-	color: cyan;
+	font-size: 18px;
 }
+
+.second {
+	display: none;
+}
+
+.bg-primary {
+	max-height: 1000px;
+}
+

@@ -37,7 +37,7 @@ html
 				#bs-example-navbar-collapse-1.collapse.navbar-collapse
 					ul.nav.navbar-nav.navbar-right
 						li
-							a(href='http://localhost:8000/index') Home
+							a(href='http://localhost:8000') Home
 						li
 							a(href='http://localhost:8000/comments') Messages
 						li
@@ -53,10 +53,18 @@ html
 					hr
 		h2= user.name
 		h3= user.email
-
-		a(href='/index') home
-		br
-		a(href='/index') log out
+		each message in body
+			li.mer.list-unstyled User: #{message.user.name}
+			div
+				li.tee.mer.list-unstyled Title: #{message.title} 
+				div
+					li.tee.mer.list-unstyled Message: #{message.body}
+					
+				div.reply.id
+				if message.comments
+					each comment in message.comments
+						//-li.mer.list-unstyled #{comment.user.name}
+						li.mer.list-unstyled Comment: #{comment.body}
 
 
 		// jQuery

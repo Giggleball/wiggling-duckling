@@ -11,17 +11,6 @@ const sequelize  = require( 'sequelize' )
 
 const seq        = new sequelize( 'postgres://' + process.env.POSTGRES_USER + '@localhost/soap');
 
-const gulp       = require( 'gulp')  
-
-const watch      = require( './semantic/tasks/watch' )  
-
-const build      = require( './semantic/tasks/build' ) 
-
-
-// import task with a custom task name
-gulp.task('watch ui', watch)
-gulp.task('build ui', build)
-
 
 //static will become default and overwrite /home
 app.use( express.static( 'static' ) )
@@ -72,7 +61,7 @@ Comment.belongsTo( Message )
 // Set express routes
 
 // Homepage + login screen
-app.get( '/index', ( req, res ) => {
+app.get( '/', ( req, res ) => {
 	console.log( 'Homepage' )	
 	res.render( 'index', {
         user: req.session.user
@@ -87,23 +76,53 @@ app.get( '/comments', ( req, res ) => {
         include: [{
             model: User,
             attributes: [ 'name' ]
-        }]
+        },
+        {
+            model: Comment,
+            attributes: [ 'body' ]
+        }
+        ]
     }).then( ( message )  => {
         // console.log( message )
-        res.render( 'comments', { body: message } )
+        res.render( 'comments', { body: message, user: req.session.user} )
     })
 })
 
 
-// Viewing profile + all your messages
+// View current user + their messages and comments ^_^
 app.get('/profile', function ( req, res ) {
-    let User = req.session.user;
-    if (User === undefined) {
-        res.redirect('/index')
+    let user = req.session.user;
+    if (user === undefined) {
+        res.redirect('/')
     } else {
-        res.render('profile', {
-            user: User
-        })
+        console.log(user)
+        Promise.all([
+            User.findOne({
+                where: {
+                    id: user.id
+                }
+            }),
+            Message.findAll({
+                include: [{
+                    model: User,
+                },
+                {
+                    model: Comment,
+                    include: [User]
+                }]
+            })
+            ]).then( ( result )  => {
+                // you want to show only the messages of the current user
+                result[0].getMessages({
+                    include: [
+                        {model: User},
+                        {model: Comment, include: [User]}
+                    ]
+                }).then((messages) => {
+                    console.log(messages)
+                    res.render( 'profile', { body: messages, user: user } )
+                })
+        })       
     }
 })
 
@@ -114,7 +133,7 @@ app.get( '/logout', ( req, res ) => {
         if( error ) {
             throw error
         }
-        res.redirect( '/index' )
+        res.redirect( '/' )
     })
 });
 
@@ -123,7 +142,7 @@ app.get( '/logout', ( req, res ) => {
 app.get( '/post', ( req, res ) => {
     console.log( 'leaving a post' )
     res.render( 'post', {
-        User: req.session.user
+        user: req.session.user
     })
 })
 
@@ -132,30 +151,30 @@ app.get( '/post', ( req, res ) => {
 app.get( '/login', ( req, res ) => {
     console.log( 'logged in' )
     res.render( 'login', {
-        User: req.session.user
+        user: req.session.user
     })
 })
 
 
 app.post( '/register', ( req, res ) => {
     if(req.body.name.length === 0) {
-        res.redirect('/index')
+        res.redirect('/')
     }
 
     if(req.body.password.length === 0) {
-        res.redirect('/index')
+        res.redirect('/')
     }
 
     if(req.body.email.length === 0) {
-        res.redirect('/index')
+        res.redirect('/')
     }
     User.create({
-            name: req.body.name,
-            email: req.body.email,
-            password: req.body.password
-        }).then( function () {
+        name: req.body.name,
+        email: req.body.email,
+        password: req.body.password
+    }).then( function () {
         res.render( 'register' )
-      })
+    })
     console.log( 'registered  sucessfully' )
     res.render( 'register' )
 })
@@ -163,11 +182,11 @@ app.post( '/register', ( req, res ) => {
 
 app.post('/login', bodyParser.urlencoded({extended: true}), ( req, res ) => {
     if(req.body.email.length === 0) {
-        res.redirect('/index')
+        res.redirect('/')
     }
 
     if(req.body.password.length === 0) {
-        res.redirect('/index')
+        res.redirect('/')
     }
 
     User.findOne({
@@ -179,7 +198,7 @@ app.post('/login', bodyParser.urlencoded({extended: true}), ( req, res ) => {
             req.session.user = user 
             res.redirect('/comments')
         } else {
-            res.redirect('/index')
+            res.redirect('/')
         }
     })
 })
@@ -189,22 +208,15 @@ app.post('/login', bodyParser.urlencoded({extended: true}), ( req, res ) => {
 app.post( '/comments', ( req, res ) => {
     console.log(req.session.user)
     User.findOne({
-        where: { 
-            email: req.session.user.email
-        }
+        where: { name: req.session.user.name },
+        order: '"createdAt" DESC'
     }).then( (thisuser) => {
         console.log(thisuser)
-        thisuser.createMessage({
-            title: req.body.title,
-            body: req.body.body
-        }).then( (thisuser) => {
-            thisuser.createComment({
-                body: req.body.body
-            }).then( () => {
-                seq.sync().then( () => {
-                res.redirect( '/comments' )
-                })
-            })
+        thisuser.createComment({
+            body: req.body.body,
+            messageId: req.body.post_id
+        }).then( () => {
+            res.redirect( '/comments' )
         })
     })
 })
@@ -217,31 +229,31 @@ seq.sync( {force: true} ).then(function () {
         email: 'mua@mua',
         password: 'mua'
     }).then( ( user ) => { // INSERT INTO "messages" ("id","body","personId") VALUES (DEFAULT,'i like trains',1) RETURNING *;
-        user.createMessage({
-            title: 'Ohaiyo!',
-            body: 'I saw two bunnies !!!'
-        })
-    }).then
+    user.createMessage({
+        title: 'Ohaiyo!',
+        body: 'I saw two bunnies !!!'
+    })
+}).then
     User.create({ // INSERT INTO "people" ("id","name") VALUES (DEFAULT,'bubbles') RETURNING *;
         name: 'Cat',
         email: 'miaw@miaw',
         password: 'miaw'
     }).then( ( user ) => { // INSERT INTO "messages" ("id","body","personId") VALUES (DEFAULT,'i like trains',1) RETURNING *;
-        user.createMessage({
-            title: 'Konbanwa!',
-            body: 'I will have peanutbutter today !!!'
-        })
-    }).then 
+    user.createMessage({
+        title: 'Konbanwa!',
+        body: 'I will have peanutbutter today !!!'
+    })
+}).then 
             User.create({ // INSERT INTO "people" ("id","name") VALUES (DEFAULT,'bubbles') RETURNING *;
-        name: 'Tom',
-        email: 'tom@mtom',
-        password: 'tom'
+                name: 'Tom',
+                email: 'tom@mtom',
+                password: 'tom'
     }).then( ( user ) => { // INSERT INTO "messages" ("id","body","personId") VALUES (DEFAULT,'i like trains',1) RETURNING *;
-        user.createMessage({
-            title: 'Anneyong!',
-            body: 'I will do the pho challenge today !!!'
+    user.createMessage({
+        title: 'Anneyong!',
+        body: 'I will do the pho challenge today !!!'
     })
-    })
+})
 })    
 
 

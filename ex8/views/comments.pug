@@ -19,6 +19,7 @@ html(lang='en')
 		// Theme CSS
 		link(href='css/creative.min.css', rel='stylesheet')
 		link(href='css/style.css', rel='stylesheet')
+		link(href='style_new.css', rel='stylesheet')
 		// HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
 		// WARNING: Respond.js doesn't work if you view the page via file://
 		//if lt IE 9
@@ -38,43 +39,55 @@ html(lang='en')
 				#bs-example-navbar-collapse-1.collapse.navbar-collapse
 					ul.nav.navbar-nav.navbar-right
 						li
-							a(href='http://localhost:8000/index') Home
+							a(href='http://localhost:8000') Home
 						li
 							a(href='http://localhost:8000/profile') Profile
 						li
 							a(href='http://localhost:8000/post') Post
 						li
 							a(href='http://localhost:8000/logout') Logout
-				.navbar-collapse
-			.container-fluid
 
-		section#about.bg-primary
+		section.about.bg-primary
 			.container
 				.row
 					.col-lg-8.col-lg-offset-2.text-center
 						h2.section-heading Read all messages!
 						hr.light
 						p.text-fade
-						div
+						div.post.id
+						if user	
 							each message in body
-								li.mer.list-unstyled #{message.user.name}
+								li.mer.list-unstyled User: #{message.user.name}
 								div
-									li.tee.mer.list-unstyled #{message.title} 
+									li.tee.mer.list-unstyled Title: #{message.title} 
 									div
-										li.tee.mer.list-unstyled #{message.body}
+										li.tee.mer.list-unstyled Message: #{message.body}
 										br
-										a#hideme.reply(href='#') Reply
-									div
+										a.hideme(href='#') Reply
+										
+									div.reply.id
 									if message.comments
 										each comment in message.comments
-											li.mer.list-unstyled #{comment.user.name}
-											div
-												li.mer.list-unstyled #{comment.body}
-						div#reply
-							form(id='ajax-contact', method='POST', action='/comments', autocomplete='off')
-								textarea.top.form-control(id='message', type='text', name='body', rows="3")
-								br
-								input.btn(type="submit", value="Add reply")
+											//-li.mer.list-unstyled #{comment.user.name}
+											li.mer.list-unstyled Comment: #{comment.body}
+							
+								form.reply(method='POST', action='/comments', autocomplete='off')
+									textarea.top.form-control(id='comments', type='text', name='body', placeholder='Type your comment here...', rows='3')
+									br
+									input(type="text", value=message.id, name="post_id", hidden)
+									input.btn(type="submit", value="Add reply")
+									hr
+						else
+							header
+								.header-content
+									.header-content-
+										.col-lg-8.col-lg-offset-2.text-center
+											br
+											hr
+											br 
+											h3 Please log in to view posts!
+											button#myB.btn(type='submit') Log in
+		
 		// jQuery
 
 		script(src='vendor/jquery/jquery.min.js')

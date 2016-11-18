@@ -19,6 +19,7 @@ html(lang='en')
 		// Theme CSS
 		link(href='css/creative.min.css', rel='stylesheet')
 		link(href='css/style.css', rel='stylesheet')
+		link(href='style_new.css', rel='stylesheet')
 		// HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
 		// WARNING: Respond.js doesn't work if you view the page via file://
 		//if lt IE 9
@@ -38,7 +39,7 @@ html(lang='en')
 				#bs-example-navbar-collapse-1.collapse.navbar-collapse
 					ul.nav.navbar-nav.navbar-right
 						li
-							a(href='http://localhost:8000/index') Home
+							a(href='http://localhost:8000') Home
 						li
 							a(href='http://localhost:8000/profile') Profile
 						li
@@ -52,22 +53,28 @@ html(lang='en')
 				.header-content-inner
 					h1#homeHeading Your Favorite Source of Free Bootstrap Themes
 					hr
-		section#about.bg-primary
+		section.about.bg-primary
 			.container
 				.row
 					.col-lg-8.col-lg-offset-2.text-center
-						h2.text-faded Leave us a message!
+						if user
+							h2.text-faded Leave us a message!
+								br
+								user
+								a(href='/')
+								div#third
+									form.center-block(method='POST', action='/comments', autocomplete='off')
+										br
+										input.top.form-control(id='title', type='text', name='title', placeholder='Title')
+										br
+										textarea.top.form-control(id='message', type='text', name='body', rows="3", placeholder='What made you smile today?')
+										br
+										input.btn(type="submit", value="submit")
+						else 
+							h2.text-faded Leave us a message!
 							br
-							user
-							a(href='/index')
-							div#third
-								form.center-block(id='searchCriteria', method='POST', action='/comments', autocomplete='off')
-									br
-									input.top.form-control(id='title', type='text', name='title', placeholder='Title')
-									br
-									textarea.top.form-control(id='message', type='text', name='body', rows="3", placeholder='What made you smile today?')
-									br
-									input.btn(type="submit", value="submit")
+							h3 Please log in to post!
+							button#myB.btn(type='submit') Log in
 									
 		// jQuery
 		script(src='vendor/jquery/jquery.min.js')
