@@ -285,38 +285,38 @@ Comment.belongsTo( Message )
 
 
 // Sync database
-seq.sync( {force: true} ).then(function () {
-    User.create({ // INSERT INTO "people" ("id","name") VALUES (DEFAULT,'bubbles') RETURNING *;
-        name: 'Mua',
-        email: 'mua@mua',
-        password: 'mua'
-    }).then( ( user ) => { // INSERT INTO "messages" ("id","body","personId") VALUES (DEFAULT,'i like trains',1) RETURNING *;
-    user.createMessage({
-        title: 'Ohaiyo!',
-        body: 'I saw two bunnies !!!'
-    })
-}).then
-    User.create({ // INSERT INTO "people" ("id","name") VALUES (DEFAULT,'bubbles') RETURNING *;
-        name: 'Cat',
-        email: 'miaw@miaw',
-        password: 'miaw'
-    }).then( ( user ) => { // INSERT INTO "messages" ("id","body","personId") VALUES (DEFAULT,'i like trains',1) RETURNING *;
-    user.createMessage({
-        title: 'Konbanwa!',
-        body: 'I will have peanutbutter today !!!'
-    })
-}).then 
-            User.create({ // INSERT INTO "people" ("id","name") VALUES (DEFAULT,'bubbles') RETURNING *;
-                name: 'Tom',
-                email: 'tom@mtom',
-                password: 'tom'
-    }).then( ( user ) => { // INSERT INTO "messages" ("id","body","personId") VALUES (DEFAULT,'i like trains',1) RETURNING *;
-    user.createMessage({
-        title: 'Anneyong!',
-        body: 'I will do the pho challenge today !!!'
-    })
-})
-})    
+// seq.sync( {force: true} ).then(function () {
+//     User.create({ // INSERT INTO "people" ("id","name") VALUES (DEFAULT,'bubbles') RETURNING *;
+//         name: 'Mua',
+//         email: 'mua@mua',
+//         password: 'mua'
+//     }).then( ( user ) => { // INSERT INTO "messages" ("id","body","personId") VALUES (DEFAULT,'i like trains',1) RETURNING *;
+//     user.createMessage({
+//         title: 'Ohaiyo!',
+//         body: 'I saw two bunnies !!!'
+//     })
+// }).then
+//     User.create({ // INSERT INTO "people" ("id","name") VALUES (DEFAULT,'bubbles') RETURNING *;
+//         name: 'Cat',
+//         email: 'miaw@miaw',
+//         password: 'miaw'
+//     }).then( ( user ) => { // INSERT INTO "messages" ("id","body","personId") VALUES (DEFAULT,'i like trains',1) RETURNING *;
+//     user.createMessage({
+//         title: 'Konbanwa!',
+//         body: 'I will have peanutbutter today !!!'
+//     })
+// }).then 
+//             User.create({ // INSERT INTO "people" ("id","name") VALUES (DEFAULT,'bubbles') RETURNING *;
+//                 name: 'Tom',
+//                 email: 'tom@mtom',
+//                 password: 'tom'
+//     }).then( ( user ) => { // INSERT INTO "messages" ("id","body","personId") VALUES (DEFAULT,'i like trains',1) RETURNING *;
+//     user.createMessage({
+//         title: 'Anneyong!',
+//         body: 'I will do the pho challenge today !!!'
+//     })
+// })
+// })    
 
 
 // App will listen on 8000

@@ -1,5 +1,3 @@
-const models    = require('../models')
-
 const express   = require( 'express' )
 
 const router    = express.Router ( )
@@ -29,13 +27,16 @@ router.post('/login', bodyParser.urlencoded({extended: true}), ( req, res ) => {
             email: req.body.email
         }
     }).then( function ( user ) {
-        if ( user !== null && req.body.password === user.password ) {
-            req.session.user = user 
-            res.redirect('/messages')
-        } else {
-            res.redirect('/')
-        }
-    })
+        bcrypt.compare(req.body.password, user.password, function (err, response) {
+            if ( user !== null &&  response == true ) {
+                req.session.user = user 
+                res.redirect('/messages')
+            } else {
+                res.redirect('/')
+            }
+        }), function (error) {
+            res.redirect('/?message=' + encodeURIComponent("Invalid email or password."));
+        })
 })
 
 
