@@ -1,7 +1,7 @@
 // Import necessary modules
 const express    = require( 'express' )
 
-const app        = express()
+const app        = express( )
 
 const bodyParser = require( 'body-parser' )
 
@@ -9,7 +9,18 @@ const session    = require( 'express-session' )
 
 const sequelize  = require( 'sequelize' )
 
-const seq        = new sequelize( 'postgres://' + process.env.POSTGRES_USER + '@localhost/soap');
+const seq        = new sequelize( 'postgres://' + process.env.POSTGRES_USER + '@localhost/soap' );
+
+
+// Module.export doesn't work :(
+// let comments     = require( __dirname + '/models/com.js' )
+// comments()
+
+// let messsages    = require( __dirname + '/models/mes.js' )
+// messages()
+
+// let users        = require( __dirname + '/models/user.js' )
+// users()
 
 
 //static will become default and overwrite /home
@@ -66,29 +77,29 @@ app.use( '/register', registrationRouter )
 // Define database structure
 
 // Define models
-// let User = seq.define('user', {
-//     name: sequelize.STRING,
-//     email: { type: sequelize.STRING, unique: true },
-//     password: sequelize.STRING
-// })
+let User = seq.define('user', {
+    name: sequelize.STRING,
+    email: { type: sequelize.STRING, unique: true },
+    password: sequelize.STRING
+})
 
-// let Message = seq.define( 'message', {
-//     title: sequelize.STRING,
-//     body: sequelize.STRING
-// })
+let Message = seq.define( 'message', {
+    title: sequelize.STRING,
+    body: sequelize.STRING
+})
 
-// let Comment = seq.define( 'comment', {
-//   body: sequelize.STRING
-// })
+let Comment = seq.define( 'comment', {
+  body: sequelize.STRING
+})
 
 
 // Define relations
-// User.hasMany( Message )
-// User.hasMany( Comment )
-// Message.hasMany ( Comment )
-// Message.belongsTo( User )
-// Comment.belongsTo( User )
-// Comment.belongsTo( Message )
+User.hasMany( Message )
+User.hasMany( Comment )
+Message.hasMany ( Comment )
+Message.belongsTo( User )
+Comment.belongsTo( User )
+Comment.belongsTo( Message )
 
 
 // Set express routes
