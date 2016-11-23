@@ -9,22 +9,11 @@ const session    = require( 'express-session' )
 
 const sequelize  = require( 'sequelize' )
 
-const seq        = new sequelize( 'postgres://' + process.env.POSTGRES_USER + '@localhost/soap' );
-
-
-// Module.export doesn't work :(
-// let comments     = require( __dirname + '/models/com.js' )
-// comments()
-
-// let messsages    = require( __dirname + '/models/mes.js' )
-// messages()
-
-// let users        = require( __dirname + '/models/user.js' )
-// users()
-
+var validator = require( 'validator' )
 
 //static will become default and overwrite /home
 app.use( express.static( 'static' ) )
+
 
 // Need this to use the middleware & sessions
 app.use( bodyParser.urlencoded({ extended: true }))
@@ -42,64 +31,54 @@ app.set( 'view engine', 'pug' )
 app.set( 'views', __dirname + '/views' )
 
 
+// Models
+let model        = require( __dirname + '/models/database' )
+
 // Routes
-let indexRouter         = require( __dirname + '/routes/index' )
-
-let loginRouter         = require( __dirname + '/routes/login' )
-
-let logoutRouter        = require( __dirname + '/routes/logout' )
-
-let messagesRouter      = require( __dirname + '/routes/messages' )
-
-let postRouter          = require( __dirname + '/routes/post' )
-
-let profileRouter       = require( __dirname + '/routes/profile' )
-
-let registrationRouter  = require( __dirname + '/routes/reg' )
+let routes       = require( __dirname + '/routes/index' )
 
 
-app.use( '/router', indexRouter )
+app.use( '/', routes )
 
-app.use( '/login', loginRouter )
 
-app.use( '/messages', messagesRouter )
+// App will listen on 8000
+app.listen(8000, () => {
+    console.log( 'Server running' )
+})
 
-app.use( '/logout', logoutRouter )
 
-app.use( '/post', postRouter )
 
-app.use( '/profile', profileRouter )
 
-app.use( '/register', registrationRouter )
+
 
 
 
 // Define database structure
 
 // Define models
-let User = seq.define('user', {
-    name: sequelize.STRING,
-    email: { type: sequelize.STRING, unique: true },
-    password: sequelize.STRING
-})
+// let User = seq.define( 'user', {
+//     name: sequelize.STRING,
+//     email: { type: sequelize.STRING, unique: true },
+//     password: sequelize.STRING
+// })
 
-let Message = seq.define( 'message', {
-    title: sequelize.STRING,
-    body: sequelize.STRING
-})
+// let Message = seq.define( 'message', {
+//     title: sequelize.STRING,
+//     body: sequelize.STRING
+// })
 
-let Comment = seq.define( 'comment', {
-  body: sequelize.STRING
-})
+// let Comment = seq.define( 'comment', {
+//   body: sequelize.STRING
+// })
 
 
-// Define relations
-User.hasMany( Message )
-User.hasMany( Comment )
-Message.hasMany ( Comment )
-Message.belongsTo( User )
-Comment.belongsTo( User )
-Comment.belongsTo( Message )
+// // Define relations
+// User.hasMany( Message )
+// User.hasMany( Comment )
+// Message.hasMany ( Comment )
+// Message.belongsTo( User )
+// Comment.belongsTo( User )
+// Comment.belongsTo( Message )
 
 
 // Set express routes
@@ -306,10 +285,10 @@ Comment.belongsTo( Message )
 //         body: 'I will have peanutbutter today !!!'
 //     })
 // }).then 
-//             User.create({ // INSERT INTO "people" ("id","name") VALUES (DEFAULT,'bubbles') RETURNING *;
-//                 name: 'Tom',
-//                 email: 'tom@mtom',
-//                 password: 'tom'
+//     User.create({ // INSERT INTO "people" ("id","name") VALUES (DEFAULT,'bubbles') RETURNING *;
+//         name: 'Tom',
+//         email: 'tom@mtom',
+//         password: 'tom'
 //     }).then( ( user ) => { // INSERT INTO "messages" ("id","body","personId") VALUES (DEFAULT,'i like trains',1) RETURNING *;
 //     user.createMessage({
 //         title: 'Anneyong!',
@@ -319,10 +298,7 @@ Comment.belongsTo( Message )
 // })    
 
 
-// App will listen on 8000
-app.listen(8000, () => {
-    console.log( 'Server running' )
-})
+
 
 
 
