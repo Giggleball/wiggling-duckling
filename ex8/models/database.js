@@ -15,9 +15,39 @@ seq.conn         = new sequelize( 'postgres://' + process.env.POSTGRES_USER + '@
 
 // Users
 seq.User = seq.conn.define( 'user', {
-    name: { type: sequelize.STRING, unique: true, allowNull: false },
-    email: { type: sequelize.STRING, unique: true, allowNull: false },
-    password: { type: sequelize.STRING, min: 8 }
+    name: { 
+        type: sequelize.STRING, 
+        unique: false, 
+        allowNull: false,
+        validate: {
+            len: {
+                args: 1,
+                msg: 'Username cannot be blank',
+            } 
+        }
+    },
+    email: { 
+        type: sequelize.STRING, 
+        unique: true, 
+        allowNull: false,
+        validate: {
+            len: {
+                args: 1,
+                msg: 'Email cannot be blank',
+            } 
+        }
+    },
+    password: { 
+        type: sequelize.STRING, 
+        unique: true, 
+        allowNull: false,
+        validate: {
+            len: {
+                args: [3],
+                msg: 'Password must be at least 8 characters long'
+           } 
+        }
+    }
 })
 
 

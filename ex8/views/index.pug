@@ -55,44 +55,51 @@ html
 							h2 Welcome #{user.name}
 						else
 							div#first
-								form.center-block(action='/login' method='post')
+								form.center-block(action='/login', method='post', onsubmit='return Validate()', name='vform')
 									h3.text-faded Login to your GiggleSmile.
 									br
 									label.center
-									input#email(name='email', placeholder='email')
+									div
+										input#email(name='email', placeholder='email' required)
+										div#email_error.val_error
 									br
 									br
 									label.center
-									input#password(type='password', name='password', placeholder='password' required)
+									div
+										input#password(type='password', name='password', placeholder='password' required)
+										div#password_error.val_error
 									br
 									br
 									button.btn(type='submit') Login
-									h4
-									a(href='#') Forgot Password ?
+									br
 									br
 									| Don't have account? 
 									a#signup(href='#') Sign up here
 							div#second.second
-								form.center-block(action='/register' method='post')
+								form.center-block(action='/register', method='post', onsubmit='return Validate()', name='vform')
 									h3.text-faded Create a Free GiggleSmile!
 									br
 									label.center
-									input#name(name='name', placeholder='First name')
+									div
+										input#name(name='name', placeholder='First name' required)
+										div#name_error.val_error
 									br
 									br
 									label.center
-									input#email(name='email', placeholder='email')
+									div
+										input#email(name='email', placeholder='email' required)
+										div#email_error.val_error
 									br
 									br
 									label.center
-									input#password(type='password', name='password', placeholder='password' required)
-
+									div
+										input#password(type='password', name='password', placeholder='password' required)
+										div#password_error.val_error
 									br 
-
 									br
 									button.btn(type='submit') Sign Up
 									h4
-									a(href='#') Forgot Password ?
+									br
 									br
 									| Already have an account? 
 									a#signin(href='#') Sign in
