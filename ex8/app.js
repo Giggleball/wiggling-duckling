@@ -9,7 +9,7 @@ const session    = require( 'express-session' )
 
 const sequelize  = require( 'sequelize' )
 
-var validator = require( 'validator' )
+let validator = require( 'validator' )
 
 //static will become default and overwrite /home
 app.use( express.static( 'static' ) )

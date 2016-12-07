@@ -1,15 +1,23 @@
 {
-  "name": "blog",
+  "name": "japanese_memory_game",
   "version": "1.0.0",
-  "description": "blog",
+  "description": "japanese memory game",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "game"
   },
   "keywords": [
-    "blog"
+    "japanese",
+    "game",
+    "memory",
+    "sequelize",
+    "pug"
   ],
-  "author": "giggleball",
+  "author": "Giggleball",
   "license": "MIT",
   "dependencies": {
     "bcrypt": "^0.8.7",
