@@ -13,6 +13,7 @@
 }
 
 .bg-primary {
-	max-height: 1000px;
+	max-height: 100%
+	display: repeat;
 }
 
