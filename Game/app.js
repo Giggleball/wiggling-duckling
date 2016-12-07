@@ -13,7 +13,7 @@ cosnt sequelize		= require( 'sequelize' )
 
 
 // Requiring models
-let data 			= require( 'models/database')
+let data 			= require( 'models/database' )
 
 // Public files {media/css/js}
 app.use( express.static( '/public' ) )
