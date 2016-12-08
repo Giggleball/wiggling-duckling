@@ -56,6 +56,59 @@ body#page-top.bg-primary
 			.row
 				.col-md-8.col-md-offset-2
 					h2.section-heading Discover new words everyday!
+					.col-lg-8.col-lg-offset-2.text-center
+						if user 
+							h2 Welcome #{user.name}
+						else
+							div#first
+								form.center-block(action='/login', method='post', onsubmit='return Validate()', name='vform')
+									h3.text-faded Login to your GiggleSmile.
+									br
+									label.center
+									div
+										input#email(name='email', placeholder='email' required)
+										div#email_error.val_error
+									br
+									br
+									label.center
+									div
+										input#password(type='password', name='password', placeholder='password' required)
+										div#password_error.val_error
+									br
+									br
+									button.btn(type='submit') Login
+									br
+									br
+									| Don't have account? 
+									a#signup(href='#') Sign up here
+							div#second.second
+								form.center-block(action='/register', method='post', onsubmit='return Validate()', name='vform')
+									h3.text-faded Create a Free GiggleSmile!
+									br
+									label.center
+									div
+										input#name(name='name', placeholder='First name' required)
+										div#name_error.val_error
+									br
+									br
+									label.center
+									div
+										input#email(name='email', placeholder='email' required)
+										div#email_error.val_error
+									br
+									br
+									label.center
+									div
+										input#password(type='password', name='password', placeholder='password' required)
+										div#password_error.val_error
+									br 
+									br
+									button.btn(type='submit') Sign Up
+									br
+									br
+									| Already have an account? 
+									a#signin(href='#') Sign in
+							h2#error-message= message
 				
 	//section#features.features
 		.container
@@ -136,6 +189,9 @@ body#page-top.bg-primary
 					a(href='#') FAQ
 	// jQuery
 	script(src='/js/jquery-3.1.1.min.js')
+
+	// Custom Javascript
+	script(src='/js/custom.js')
 
 	// Bootstrap Core JavaScript
 	script(src='/js/bootstrap.min.js')
