@@ -19,17 +19,25 @@ saveUninitialized: false
 }))
 
 
-// Landing Page { Register + login page }
+// { Landing Page }
 router.get( '/', ( req, res ) => {
 	console.log( 'main' )
 	res.render( 'index', {
+	})
+})
+
+
+// { Register + login page }
+router.get( '/login', ( req, res ) => {
+	console.log( 'registration' )
+	res.render( 'reg', {
 		user:req.session.user
 	})
 })
 
 
-// Signin up
-router.post( '/register', ( req, res ) => {
+// { Signin up }
+router.post( '/login', ( req, res ) => {
 	if(req.body.username.length === 0) {
 		res.redirect('/')
 	}
@@ -65,11 +73,11 @@ router.post( '/register', ( req, res ) => {
 		}
 	})
 	console.log( 'registered  sucessfully' )
-	res.redirect( '/dash' )
+	res.redirect( '/login' )
 })
 
 
-// Login
+// { Login }
 router.post( '/login', bodyParser.urlencoded({extended: true}), ( req, res ) => {
 	if(req.body.username.length === 0) {
 		res.redirect( '/')
@@ -98,7 +106,7 @@ router.post( '/login', bodyParser.urlencoded({extended: true}), ( req, res ) => 
 })
 
 
-// Dashboard { Games }
+// { Dashboard }
 router.get( '/dash', ( req, res ) => {
 	console.log( 'viewing Dashboard' )
 	res.render( 'dash', {
@@ -109,7 +117,7 @@ router.get( '/dash', ( req, res ) => {
 
 
 
-// Game { }
+// { Game }
 router.get( '/game', ( req, res ) => {
 	console.log( 'starting game' )
 	res.render( 'game', {
@@ -118,7 +126,7 @@ router.get( '/game', ( req, res ) => {
 })
 
 
-// Lougout
+// { Lougout }
 router.get( '/logout', ( req, res ) => {
 	req.session.destroy( function (err) {
 		if(err) {
