@@ -15,6 +15,7 @@ seq.conn 		= new sequelize( 'game', process.env.POSTGRES_USER, process.env.POSTG
 
 ///////////// ------ If I add chat feature, look up 'buffer' so msg aren't pushed as fast ------ /////////////
 
+
 // Models
 seq.User = seq.conn.define( 'user', {
 	username: {
@@ -22,7 +23,7 @@ seq.User = seq.conn.define( 'user', {
 		unique: true,
 		allowNull: false,
 		validate: {
-			len{
+			len: {
 				args: 3,
 				msg: 'Username must be at least 3 characters'
 			}
@@ -33,7 +34,7 @@ seq.User = seq.conn.define( 'user', {
 		unique: false,
 		allowNull: false,
 		validate: {
-			len{
+			len: {
 				args: 2,
 				msg: 'Name must be at least 2 characters'
 			}
@@ -41,10 +42,10 @@ seq.User = seq.conn.define( 'user', {
 	},
 	email: {
 		type: sequelize.STRING,
-		unique: ture,
+		unique: true,
 		allowNull: false,
 		validate: {
-			len{
+			len: {
 				args: 1,
 				msg: 'Email must be filled in'
 			}
@@ -55,7 +56,7 @@ seq.User = seq.conn.define( 'user', {
 		unique: false,
 		allowNull: false,
 		validate: {
-			len{
+			len: {
 				args: 4,
 				msg: 'Password must be at least 4 characters long'
 			}
@@ -65,7 +66,6 @@ seq.User = seq.conn.define( 'user', {
 		type: sequelize.STRING,
 		unique: false,
 		allowNull: false,
-		}
 	}
 })
 
@@ -79,6 +79,15 @@ seq.User = seq.conn.define( 'user', {
 	score: sequelize.STRING
 })
 
+
+// Sync with DB
+seq.conn.sync( { 'force': true} ).then( 
+	( ) => {
+		console.log( 'db has been updated' )
+	})
+
+
+module.exports = seq
 
 
 

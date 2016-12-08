@@ -23,7 +23,7 @@ router.use(session({
 secret: 'oh wow very secret much security',
 resave: true,
 saveUninitialized: false
-}));
+}))
 
 
 
@@ -61,7 +61,7 @@ router.post('/login', bodyParser.urlencoded({extended: true}), ( req, res ) => {
         }
     }).then( function ( user ) {
         bcrypt.compare(req.body.password, user.password, function (err, response) {
-            if ( user !== null &&  response == true ) {
+            if ( user !== null && response == true ) {
                 req.session.user = user 
                 res.redirect('/messages')
             } else {

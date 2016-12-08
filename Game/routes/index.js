@@ -1,9 +1,22 @@
 // Dependencies
-const express	= require( 'express' )
+const express	 = require( 'express' )
 
-let router		= express.router( )
+const bodyParser = require( 'body-parser' )
 
-let data 		= require( 'models/database' )
+const session	 = require( 'express-session' )
+
+let router		 = express.Router( )
+
+let seq          = require( __dirname + '/../models/database' )
+
+// Need this to use the middleware & sessions
+router.use( bodyParser.urlencoded({ extended: true }))
+
+router.use(session({
+secret: 'oh wow very secret much security',
+resave: true,
+saveUninitialized: false
+}))
 
 
 // Landing Page { Register + login page }
@@ -53,16 +66,16 @@ router.post( '/register', ( req, res ) => {
 	})
 	console.log( 'registered  sucessfully' )
 	res.redirect( '/dash' )
-}
+})
 
 
 // Login
-router.post( '/login', bodyParser.urlendoded({extended: true}), ( req, res ) => {
+router.post( '/login', bodyParser.urlencoded({extended: true}), ( req, res ) => {
 	if(req.body.username.length === 0) {
 		res.redirect( '/')
 	}
 
-	if(req.body.password.legth === 0) {
+	if(req.body.password.length === 0) {
 		res.redirect( '/')
 	}
 
@@ -71,12 +84,12 @@ router.post( '/login', bodyParser.urlendoded({extended: true}), ( req, res ) => 
 			username: req.body.username
 		}
 	}).then( function ( user ) {
-		bcrypt.compare(req.body.password, userr.password, function (err, res ) {
-			if( user ==! && response == true ) {
+		bcrypt.compare(req.body.password, user.password, function (err, res ) {
+			if( res == true ) {
 				req.session.user = user
 				res.redirect( '/dash' )
 			} else {
-				redirect( '/')
+				res.redirect( '/')
 			}
 		}), function (err) {
 			res.redirect( '/message=' + encodeURIComponent('Invalid password or username'))

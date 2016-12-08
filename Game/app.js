@@ -3,20 +3,17 @@ const express		= require( 'express' )
 
 const app			= express( )
 
-const bodyparser	= require( 'body-parser' )
+const bodyParser	= require( 'body-parser' )
 
 const bcrypt		= require( 'bcrypt' )
 
 const session		= require( 'express-session' )
 
-cosnt sequelize		= require( 'sequelize' )
+const sequelize		= require( 'sequelize' )
 
-
-// Requiring models
-let data 			= require( 'models/database' )
 
 // Public files {media/css/js}
-app.use( express.static( '/public' ) )
+app.use( express.static( './public' ) )
 
 
 // Middleware for storing sessions & bodyparser
@@ -50,5 +47,13 @@ app.use( '/', routes )
 app.listen( 8880, () => {
 	console.log( 'We are up and running!' )
 })
+
+
+
+
+
+
+
+
 
 
