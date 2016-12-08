@@ -23,6 +23,7 @@ head
 	link(rel="stylesheet" href="/media/simple-line-icons/css/simple-line-icons.css")
 
 	// Theme CSS 
+	link(href="css/custom.css" rel="stylesheet")
 	link(href="css/new-age.min.css" rel="stylesheet")
 
 	// HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
@@ -30,7 +31,7 @@ head
 	//if lt IE 9
 		script(src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
 		script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
-body#page-top
+body#page-top.bg-primary
 	nav#mainNav.navbar.navbar-default.navbar-fixed-top
 		div.container
 			div.navbar-header
@@ -38,48 +39,25 @@ body#page-top
 					span.sr-only Toggle navigation
 					|  Menu 
 					i.fa.fa-bars
-				a.navbar-brand.page-scroll(href='#page-top') Start Learning
+				a.navbar-brand(href='http://localhost:8880/login') Start Learning
 				// Collect the nav links, forms, and other content for toggling
 			div#bs-example-navbar-collapse-1.collapse.navbar-collapse
 				ul.nav.navbar-nav.navbar-right
 					li
-						a.page-scroll(href='#download') Download
+						a(href='#') The Game
 					li
-						a.page-scroll(href='#features') Features
+						a(href='#') The Creator
 					li
-						a.page-scroll(href='#contact') Contact
+						a(href='#') Get in Touch
 		// /.navbar-collapse
 	// /.container-fluid
-	header
-		.container
-			.row
-				.col-sm-7
-					.header-content
-						.header-content-inner
-							h1
-								| New Age is an app landing page that will help you beautifully showcase your new mobile app, or anything else!
-							a.btn.btn-outline.btn-xl.page-scroll(href='#download') Start Now for Free!
-				.col-sm-5
-					.device-container
-						.device-mockup.iphone6_plus.portrait.white
-							.device
-								.screen
-									// Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else!
-									img.img-responsive(src='/media/img/demo-screen-1.jpg', alt='')
-								.button
-									// You can hook the "home button" to some JavaScript events or just remove it
-	section#download.download.bg-primary.text-center
+	section#download.download.text-center
 		.container
 			.row
 				.col-md-8.col-md-offset-2
-					h2.section-heading Discover what all the buzz is about!
-					p Our app is available on any mobile device! Download now to get started!
-					.badges
-						a.badge-link(href='#')
-							img(src='/media/img/google-play-badge.svg', alt='')
-						a.badge-link(href='#')
-							img(src='/media/img/app-store-badge.svg', alt='')
-	section#features.features
+					h2.section-heading Discover new words everyday!
+				
+	//section#features.features
 		.container
 			.row
 				.col-lg-12.text-center
