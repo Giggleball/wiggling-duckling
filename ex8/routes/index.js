@@ -70,7 +70,7 @@ router.post('/login', bodyParser.urlencoded({extended: true}), ( req, res ) => {
         }), function (error) {
             res.redirect('/?message=' + encodeURIComponent("Invalid email or password."));
         }
-})
+    })
 })
 
 

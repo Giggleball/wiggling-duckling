@@ -19,7 +19,7 @@ seq.conn 		= new sequelize( 'game', process.env.POSTGRES_USER, process.env.POSTG
 seq.User = seq.conn.define( 'user', {
 	username: {
 		type: sequelize.STRING,
-		unique: false,
+		unique: true,
 		allowNull: false,
 		validate: {
 			len{

@@ -15,26 +15,25 @@ router.get( '/', ( req, res ) => {
 })
 
 
-
-// Register
+// Signin up
 router.post( '/register', ( req, res ) => {
-	if(req.body.username.lenght === 0) {
+	if(req.body.username.length === 0) {
 		res.redirect('/')
 	}
 
-	if(req.body.name.lenght === 0) {
+	if(req.body.name.length === 0) {
 		res.render('/')
 	}
 
-	if(res.body.email.lenght === 0) {
+	if(res.body.email.length === 0) {
 		res.render('/')
 	}
 
-	if(req.body.password.lenght === 0) {
+	if(req.body.password.length === 0) {
 		res.redirect('/')
 	}
 
-	if(res.body.score.lenght === 0) {
+	if(res.body.score.length === 0) {
 		res.render('/')
 	}
 
@@ -56,7 +55,34 @@ router.post( '/register', ( req, res ) => {
 	res.redirect( '/dash' )
 }
 
-// Signing up
+
+// Login
+router.post( '/login', bodyParser.urlendoded({extended: true}), ( req, res ) => {
+	if(req.body.username.length === 0) {
+		res.redirect( '/')
+	}
+
+	if(req.body.password.legth === 0) {
+		res.redirect( '/')
+	}
+
+	seq.User.findOne({
+		where: {
+			username: req.body.username
+		}
+	}).then( function ( user ) {
+		bcrypt.compare(req.body.password, userr.password, function (err, res ) {
+			if( user ==! && response == true ) {
+				req.session.user = user
+				res.redirect( '/dash' )
+			} else {
+				redirect( '/')
+			}
+		}), function (err) {
+			res.redirect( '/message=' + encodeURIComponent('Invalid password or username'))
+		} 
+	})
+})
 
 
 // Dashboard { Games }
@@ -79,4 +105,25 @@ router.get( '/game', ( req, res ) => {
 })
 
 
+// Lougout
+router.get( '/logout', ( req, res ) => {
+	req.session.destroy( function (err) {
+		if(err) {
+			throw err
+		}
+		res.redirect( '/')
+	})
+})
+
+
+
 module.exports = router
+
+
+
+
+
+
+
+
+
