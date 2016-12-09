@@ -31,16 +31,14 @@ body {
 
 		min-width: 100%;
   		min-height: 100%;
-
 	}
 }
 
 section {
-
+				
 	.second {
 
-	display: none;
-
+		display: none;
 	}
 
 	div {
@@ -50,7 +48,6 @@ section {
 			input {
 
 				color: $navbar-default;
-
 			}
 			
 		}
@@ -58,7 +55,6 @@ section {
 		#signup {
 
 			color: $mainColour;
-
 		}
 
 		#signin {
@@ -66,4 +62,9 @@ section {
 			color: $mainColour;
 		}
 	}
+}
+
+img.size {
+	
+	width: 68%;
 }
