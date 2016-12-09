@@ -7,6 +7,8 @@ const session	 = require( 'express-session' )
 
 let router		 = express.Router( )
 
+const bcrypt	 = require( 'bcrypt' )
+
 let seq          = require( __dirname + '/../models/database' )
 
 // Need this to use the middleware & sessions
@@ -37,25 +39,21 @@ router.get( '/login', ( req, res ) => {
 
 
 // { Signin up }
-router.post( '/login', ( req, res ) => {
+router.post( '/signup', ( req, res ) => {
 	if(req.body.username.length === 0) {
 		res.redirect('/')
 	}
 
 	if(req.body.name.length === 0) {
-		res.render('/')
+		res.redirect('/')
 	}
 
-	if(res.body.email.length === 0) {
-		res.render('/')
+	if(req.body.email.length === 0) {
+		res.redirect('/')
 	}
 
 	if(req.body.password.length === 0) {
 		res.redirect('/')
-	}
-
-	if(res.body.score.length === 0) {
-		res.render('/')
 	}
 
 	// Hash the password & store it in the DB
@@ -92,15 +90,15 @@ router.post( '/login', bodyParser.urlencoded({extended: true}), ( req, res ) => 
 			username: req.body.username
 		}
 	}).then( function ( user ) {
-		bcrypt.compare(req.body.password, user.password, function (err, res ) {
-			if( res == true ) {
+		bcrypt.compare(req.body.password, user.password, function ( err, response ) {
+			if( user !== null && response == true  ) {
 				req.session.user = user
 				res.redirect( '/dash' )
 			} else {
-				res.redirect( '/')
+				res.redirect( '/' )
 			}
 		}), function (err) {
-			res.redirect( '/message=' + encodeURIComponent('Invalid password or username'))
+			res.redirect( '/login/message=' + encodeURIComponent('Invalid password or username'))
 		} 
 	})
 })
