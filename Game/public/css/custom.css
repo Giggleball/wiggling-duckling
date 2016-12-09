@@ -5,6 +5,9 @@ body .bg-primary {
 section .second {
   display: none; }
 
+section div form input {
+  color: #003366; }
+
 section div #signup {
   color: #fff; }
 
