@@ -1,3 +1,6 @@
+body nav .dash {
+  color: #fcbd20; }
+
 body .bg-primary {
   min-width: 100%;
   min-height: 100%; }
@@ -6,7 +9,7 @@ section .second {
   display: none; }
 
 section div form input {
-  color: #003366; }
+  color: #222; }
 
 section div #signup {
   color: #fff; }

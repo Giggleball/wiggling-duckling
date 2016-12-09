@@ -1,6 +1,31 @@
 $mainColour: #fff;
 
+$navbar-default:#222;
+
+$transitionColour: #fdcc52;
+
+$transitionColour-focus-hover-yellow: #fcbd20;
+
+$boder-colour: rgba(34,34,34,.1);
+
+$Lightborder-color: #fff;
+
+$border-color: rgba(34,34,34,.05);
+
+$navbar-brand-color: rgba(255,255,255,.7);
+
+
+
 body {
+
+	nav {
+
+		.dash {
+
+			color: #fcbd20;
+
+		}
+	}
 
 	.bg-primary {
 
@@ -24,7 +49,7 @@ section {
 
 			input {
 
-				color: #003366;
+				color: $navbar-default;
 
 			}
 			
