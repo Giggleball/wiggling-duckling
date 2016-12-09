@@ -50,6 +50,17 @@ body#page-top
 						a(href='#') Get in Touch
 		// /.navbar-collapse
 	// /.container-fluid
+if user 
+	header
+		.container
+			.row
+				.col-sm-7
+					.header-content
+						.header-content-inner
+							h1 Welcome #{user.name} we hope you're enjoying Kioku!
+							a.btn.btn-outline.btn-xl(href='http://localhost:8880/dash') Continue learning!
+				.col-sm-5
+else
 	header
 		.container
 			.row

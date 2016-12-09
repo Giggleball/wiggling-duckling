@@ -25,6 +25,7 @@ saveUninitialized: false
 router.get( '/', ( req, res ) => {
 	console.log( 'main' )
 	res.render( 'index', {
+		user:req.session.user
 	})
 })
 
@@ -98,7 +99,7 @@ router.post( '/login', bodyParser.urlencoded({extended: true}), ( req, res ) => 
 				res.redirect( '/' )
 			}
 		}), function (err) {
-			res.redirect( '/login/message=' + encodeURIComponent('Invalid password or username'))
+			res.redirect( '/login/message=' + encodeURIComponent( 'Invalid password or username' ))
 		} 
 	})
 })
