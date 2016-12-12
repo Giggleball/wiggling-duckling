@@ -9,12 +9,6 @@ head
 
 	title きおく　ゲ-ム 
 
-	// Memory Game Plugin
-	script(src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js")
-	script(src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.17/jquery-ui.min.js")
-	script(src="js/jquery.flip.min.js")
-	script(src="js/jquery.quizymemorygame.js")
-
 	// Bootstrap Core CSS
 	link(href='/css/bootstrap.min.css', rel='stylesheet')
 
@@ -63,130 +57,137 @@ body#page-top.bg-primary
 				.col-md-8.col-md-offset-2
 					h2.section-heading Discover new words everyday!
 					br
-					div#my-memorygame.quizy-memorygame
-						ul
-							li.match1
-								img(src='/media/kana/A.png')
-						ul
-							li.match2
-								img(src='/media/kana/I.png')
-						ul
-							li.match3
-								img(src='/media/kana/U.png')
-						ul
-							li.match4
-								img(src='/media/kana/E.png')
-						ul
-							li.match5
-								img(src='/media/kana/O.png')
-						ul
-							li.match6
-								img(src='/media/kana/KA.png')
-						ul
-							li.match7
-								img(src='/media/kana/KI.png')
-						ul
-							li.match8
-								img(src='/media/kana/KU.png')
-						ul
-							li.match9
-								img(src='/media/kana/KE.png')
-						ul
-							li.match10
-								img(src='/media/kana/KO.png')
-						ul
-							li.match11
-								img(src='/media/kana/SA.png')
-						ul
-							li.match12
-								img(src='/media/kana/SHI.png')
-						ul
-							li.match13
-								img(src='/media/kana/SU.png')
-						ul
-							li.match14
-								img(src='/media/kana/SE.png')
-						ul
-							li.match15
-								img(src='/media/kana/SO.png')
-							li
-								br
-								br
-								br
-								p
-							li
-								br
-								br
-								br
-								p
-							li
-								br
-								br
-								br
-								p
-							li
-								br
-								br
-								br
-								p
-							li
-								br
-								br
-								br
-								p
-							li
-								br
-								br
-								br
-								p
-							li
-								br
-								br
-								br
-								p
-							li
-								br
-								br
-								br
-								p
-							li
-								br
-								br
-								br
-								p
-							li
-								br
-								br
-								br
-								p
-							li
-								br
-								br
-								br
-								p
-							li
-								br
-								br
-								br
-								p
-							li
-								br
-								br
-								br
-								p
-							li
-								br
-								br
-								br
-								p
-							li
-								br
-								br
-								br
-								p
-						
+					div#main(role='main')
+						div#my-memorygame.quizy-memorygame
+							ul
+								li.match1
+									img(src='/media/kana/A.png')
+							ul
+								li.match2
+									img(src='/media/kana/I.png')
+							ul
+								li.match3
+									img(src='/media/kana/U.png')
+							ul
+								li.match4
+									img(src='/media/kana/E.png')
+							ul
+								li.match5
+									img(src='/media/kana/O.png')
+									//- ul
+									//- 	li.match6
+									//- 		img(src='/media/kana/KA.png')
+									//- ul
+									//- 	li.match7
+									//- 		img(src='/media/kana/KI.png')
+									//- ul
+									//- 	li.match8
+									//- 		img(src='/media/kana/KU.png')
+									//- ul
+									//- 	li.match9
+									//- 		img(src='/media/kana/KE.png')
+									//- ul
+									//- 	li.match10
+									//- 		img(src='/media/kana/KO.png')
+									//- ul
+									//- 	li.match11
+									//- 		img(src='/media/kana/SA.png')
+									//- ul
+									//- 	li.match12
+									//- 		img(src='/media/kana/SHI.png')
+									//- ul
+									//- 	li.match13
+									//- 		img(src='/media/kana/SU.png')
+									//- ul
+									//- 	li.match14
+									//- 		img(src='/media/kana/SE.png')
+									//- ul
+									//- 	li.match15
+									//- 		img(src='/media/kana/SO.png')
+								li.match1
+									br
+									br
+									br
+									p.text-style1 A
+								li.match2
+									br
+									br
+									br
+									p.text-style1 I
+								li.match3
+									br
+									br
+									br
+									p.text-style1 U
+								li.match4
+									br
+									br
+									br
+									p.text-style1 E
+								li.match5
+									br
+									br
+									br
+									p.text-style1 O
+								//- li.match6
+								//- 	br
+								//- 	br
+								//- 	br
+								//- 	p.text-style1 KA
+								//- li.match7
+								//- 	br
+								//- 	br
+								//- 	br
+								//- 	p.text-style1 KI
+								//- li.match8
+								//- 	br
+								//- 	br
+								//- 	br
+								//- 	p.text-style1 KU
+								//- li.match9
+								//- 	br
+								//- 	br
+								//- 	br
+								//- 	p.text-style1 KE
+								//- li.match10
+								//- 	br
+								//- 	br
+								//- 	br
+								//- 	p.text-style1 KO
+								//- li.match11
+								//- 	br
+								//- 	br
+								//- 	br
+								//- 	p.text-style1 SA
+								//- li.match12
+								//- 	br
+								//- 	br
+								//- 	br
+								//- 	p.text-style1 SHI
+								//- li.match13
+								//- 	br
+								//- 	br
+								//- 	br
+								//- 	p.text-style1 SU
+								//- li.match14
+								//- 	br
+								//- 	br
+								//- 	br
+								//- 	p.text-style1 SE
+								//- li.match15
+								//- 	br
+								//- 	br
+								//- 	br
+								//- 	p.text-style1 SO
+										
 	// jQuery
 	script(src='/js/jquery-3.1.1.min.js')
+
+	// Memory Game Plugin
+	script(src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js")
+	script(src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.17/jquery-ui.min.js")
+	script(src="js/jquery.flip.min.js")
+	script(src="js/jquery.quizymemorygame.min.js")
 
 	// Custom Javascript
 	script(src='/js/custom.js')
@@ -199,7 +200,5 @@ body#page-top.bg-primary
 
 	// Theme JavaScript
 	script(src='/js/new-age.min.js')
-
-	// Plugin Memory Game
 
 <
