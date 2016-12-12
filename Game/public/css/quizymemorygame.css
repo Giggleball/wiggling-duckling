@@ -20,6 +20,7 @@
   position:absolute;
   cursor:pointer;
   text-align:center;
+  background-color: transparent !important;
 }
 
 .quizy-memorygame .quizy-mg-item .quizy-mg-item-bottom, .quizy-memorygame .quizy-mg-item .quizy-mg-item-top{
