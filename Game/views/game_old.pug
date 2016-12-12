@@ -9,12 +9,6 @@ head
 
 	title きおく　ゲ-ム 
 
-	// Memory Game Plugin
-	script(src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js")
-	script(src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.17/jquery-ui.min.js")
-	script(src="js/jquery.flip.min.js")
-	script(src="js/jquery.quizymemorygame.js")
-
 	// Bootstrap Core CSS
 	link(href='/css/bootstrap.min.css', rel='stylesheet')
 
@@ -29,7 +23,7 @@ head
 	link(rel="stylesheet" href="/media/simple-line-icons/css/simple-line-icons.css")
 
 	// Theme CSS 
-	link(href="css/quizymemorygame.css" rel="stylesheet")
+	link(href="css/game.css" rel="stylesheet")
 	link(href="css/new-age.min.css" rel="stylesheet")
 
 	// HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
@@ -63,127 +57,16 @@ body#page-top.bg-primary
 				.col-md-8.col-md-offset-2
 					h2.section-heading Discover new words everyday!
 					br
-					div#my-memorygame.quizy-memorygame
-						ul
-							li.match1
-								img(src='/media/kana/A.png')
-						ul
-							li.match2
-								img(src='/media/kana/I.png')
-						ul
-							li.match3
-								img(src='/media/kana/U.png')
-						ul
-							li.match4
-								img(src='/media/kana/E.png')
-						ul
-							li.match5
-								img(src='/media/kana/O.png')
-						ul
-							li.match6
-								img(src='/media/kana/KA.png')
-						ul
-							li.match7
-								img(src='/media/kana/KI.png')
-						ul
-							li.match8
-								img(src='/media/kana/KU.png')
-						ul
-							li.match9
-								img(src='/media/kana/KE.png')
-						ul
-							li.match10
-								img(src='/media/kana/KO.png')
-						ul
-							li.match11
-								img(src='/media/kana/SA.png')
-						ul
-							li.match12
-								img(src='/media/kana/SHI.png')
-						ul
-							li.match13
-								img(src='/media/kana/SU.png')
-						ul
-							li.match14
-								img(src='/media/kana/SE.png')
-						ul
-							li.match15
-								img(src='/media/kana/SO.png')
-							li
-								br
-								br
-								br
-								p
-							li
-								br
-								br
-								br
-								p
-							li
-								br
-								br
-								br
-								p
-							li
-								br
-								br
-								br
-								p
-							li
-								br
-								br
-								br
-								p
-							li
-								br
-								br
-								br
-								p
-							li
-								br
-								br
-								br
-								p
-							li
-								br
-								br
-								br
-								p
-							li
-								br
-								br
-								br
-								p
-							li
-								br
-								br
-								br
-								p
-							li
-								br
-								br
-								br
-								p
-							li
-								br
-								br
-								br
-								p
-							li
-								br
-								br
-								br
-								p
-							li
-								br
-								br
-								br
-								p
-							li
-								br
-								br
-								br
-								p
+					.wrap
+						.game
+						.modal-overlay
+							.modal
+								h2.winner You Rock!
+								button.restart Play Again?
+								
+									
+
+
 						
 	// jQuery
 	script(src='/js/jquery-3.1.1.min.js')
@@ -199,7 +82,3 @@ body#page-top.bg-primary
 
 	// Theme JavaScript
 	script(src='/js/new-age.min.js')
-
-	// Plugin Memory Game
-
-<
