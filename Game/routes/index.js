@@ -157,6 +157,15 @@ router.get( '/game4', ( req, res ) => {
 })
 
 
+// { Settings }
+router.get ( '/settings', ( req, res ) =>  {
+	console.log( 'viewing settings' )
+	res.render( 'setting', {
+		user:req.session.user
+	})
+})
+
+
 // { Lougout }
 router.get( '/logout', ( req, res ) => {
 	req.session.destroy( function (err) {
