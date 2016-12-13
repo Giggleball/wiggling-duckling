@@ -125,6 +125,38 @@ router.get( '/game', ( req, res ) => {
 })
 
 
+router.get( '/game1', ( req, res ) => {
+	console.log( 'starting game' )
+	res.render( 'game_sa', {
+		user:req.session.user
+	})
+})
+
+
+router.get( '/game2', ( req, res ) => {
+	console.log( 'starting game' )
+	res.render( 'game_ha', {
+		user:req.session.user
+	})
+})
+
+
+router.get( '/game3', ( req, res ) => {
+	console.log( 'starting game' )
+	res.render( 'game_ma', {
+		user:req.session.user
+	})
+})
+
+
+router.get( '/game4', ( req, res ) => {
+	console.log( 'starting game' )
+	res.render( 'game_ra', {
+		user:req.session.user
+	})
+})
+
+
 // { Lougout }
 router.get( '/logout', ( req, res ) => {
 	req.session.destroy( function (err) {

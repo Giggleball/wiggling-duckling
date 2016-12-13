@@ -64,8 +64,7 @@ seq.User = seq.conn.define( 'user', {
 	},
 	score: {
 		type: sequelize.STRING,
-		unique: false,
-		allowNull: false,
+		unique: false
 	}
 })
 

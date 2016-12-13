@@ -1,6 +1,12 @@
 section h2 {
   margin-bottom: 20px; }
 
+section #main {
+  position: center; }
+
+a.btn {
+  margin: 10px; }
+
 body nav .dash {
   color: #fcbd20; }
 
@@ -9,20 +15,17 @@ body .bg-primary {
   min-height: 100%; }
 
 body {
-  font-family: Helvetica, Arial, Verdana;
-  text-align: center; }
+  font-family: Helvetica, Arial, Verdana; }
 
 #tutorial-memorygame {
   margin: auto;
   width: 780px; }
 
 .text-style1 {
-  font-size: 14pt;
-  color: #56605f;
+  font-size: 34pt;
   font-weight: normal;
-  text-shadow: 1px 1px 1px #fff;
   margin: 0;
-  line-height: 24pt; }
+  line-height: 0pt; }
 
 .reset-button {
   margin: 0 0 1.5em 0; }

@@ -19,6 +19,14 @@ section {
 	h2 {
 		margin-bottom: 20px;
 	}
+
+	#main {
+		position: center;
+	}
+}
+
+a.btn {
+	margin: 10px;
 }
 
 body {
@@ -41,7 +49,7 @@ body {
 
 body {
       font-family:Helvetica, Arial, Verdana;
-      text-align: center;
+      
     }
     
     #tutorial-memorygame {
@@ -50,12 +58,10 @@ body {
     }
     
     .text-style1 {
-      font-size:14pt;
-      color:#56605f;
+      font-size:34pt;
       font-weight:normal;
-      text-shadow: 1px 1px 1px #fff;
       margin:0;
-      line-height:24pt;
+      line-height:0pt;
     }
     
     .reset-button {

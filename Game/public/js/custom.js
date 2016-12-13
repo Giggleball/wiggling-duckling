@@ -32,9 +32,8 @@ $(document).ready(function () {
 
 
 	$('#my-memorygame').quizyMemoryGame( {
-		itemWidth: 111, itemHeight: 111, itemsMargin:40, colCount:5, animType:'flip' , flipAnim:'tb', animSpeed:180, resultIcons:true});
-
-
+		itemWidth: 98, itemHeight: 98, itemsMargin:40, colCount:5, animType:'flip' , flipAnim:'tb', animSpeed:180, resultIcons:true});
+	
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
