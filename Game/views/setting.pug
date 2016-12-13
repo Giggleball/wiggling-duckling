@@ -39,7 +39,7 @@ body#page-top
 					span.sr-only Toggle navigation
 					|  Menu 
 					i.fa.fa-bars
-				a.navbar-brand(href='http://localhost:8880/') Start Learning
+				a.navbar-brand.page-scroll(href='#page-top') Start Learning
 				// Collect the nav links, forms, and other content for toggling
 			div#bs-example-navbar-collapse-1.collapse.navbar-collapse
 				ul.nav.navbar-nav.navbar-right
@@ -53,6 +53,35 @@ body#page-top
 						a.dash(href='http://localhost:8880/settings') Settings
 		// /.navbar-collapse
 	// /.container-fluid
+	header
+		.container
+			.row
+				.col-sm-7
+					.header-content
+						.header-content-inner
+							h1
+								| New Age is an app landing page that will help you beautifully showcase your new mobile app, or anything else!
+							a.btn.btn-outline.btn-xl.page-scroll(href='#download') Start Now for Free!
+				.col-sm-5
+					.device-container
+						.device-mockup.iphone6_plus.portrait.white
+							.device
+								.screen
+									// Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else!
+									img.img-responsive(src='/media/img/demo-screen-1.jpg', alt='')
+								.button
+									// You can hook the "home button" to some JavaScript events or just remove it
+	section#download.download.bg-primary.text-center
+		.container
+			.row
+				.col-md-8.col-md-offset-2
+					h2.section-heading Discover what all the buzz is about!
+					p Our app is available on any mobile device! Download now to get started!
+					.badges
+						a.badge-link(href='#')
+							img(src='/media/img/google-play-badge.svg', alt='')
+						a.badge-link(href='#')
+							img(src='/media/img/app-store-badge.svg', alt='')
 	section#features.features
 		.container
 			.row
@@ -63,38 +92,63 @@ body#page-top
 						hr
 			.row
 				.col-md-4
-					// Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else!
-					img.img-responsive(src='/media/img/demo-screen-1.jpg', alt='')
-				
-					// You can hook the "home button" to some JavaScript events or just remove it
+					.device-container
+						.device-mockup.iphone6_plus.portrait.white
+							.device
+								.screen
+									// Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else!
+									img.img-responsive(src='/media/img/demo-screen-1.jpg', alt='')
+								.button
+									// You can hook the "home button" to some JavaScript events or just remove it
 				.col-md-8
 					.container-fluid
 						.row
 							.col-md-6
 								.feature-item
-									a(href='http://localhost:8880/game')
-										img.size(src='/media/img/coming-soon.png', alt='')
-									h3 かな
-									p.text-muted If cannot read kana yet, start here to learn the Japanese alphabet!
+									i.icon-screen-smartphone.text-primary
+									h3 Device Mockups
+									p.text-muted Ready to use HTML/CSS device mockups, no Photoshop required!
 							.col-md-6
 								.feature-item
-									a(href='#')
-										img.size(src='/media/img/coming-soon.png', alt='')
-									h3 3 F's
-									p.text-muted Food, Family & fun
+									i.icon-camera.text-primary
+									h3 Flexible Use
+									p.text-muted Put an image, video, animation, or anything else in the screen!
 						.row
 							.col-md-6
 								.feature-item
-									a(href='#')
-										img.size(src='/media/img/coming-soon.png', alt='')
-									h3 Education
-									p.text-muted Learn words related education & work
+									i.icon-present.text-primary
+									h3 Free to Use
+									p.text-muted As always, this theme is free to download and use for any purpose!
 							.col-md-6
 								.feature-item
-									a(href='#')
-										img.size(src='/media/img/coming-soon.png', alt='')
-									h3 Rainbow
-									p.text-muted You'll come across some very colourful words in this category!
+									i.icon-lock-open.text-primary
+									h3 Open Source
+									p.text-muted Since this theme is MIT licensed, you can use it commercially!
+	section.cta
+		.cta-content
+			.container
+				h2
+					| Stop waiting.
+					br
+					| Start building.
+				a.btn.btn-outline.btn-xl.page-scroll(href='#contact') Let's Get Started!
+		.overlay
+	section#contact.contact.bg-primary
+		.container
+			h2
+				| We 
+				i.fa.fa-heart
+				|  new friends!
+			ul.list-inline.list-social
+				li.social-twitter
+					a(href='#')
+						i.fa.fa-twitter
+				li.social-facebook
+					a(href='#')
+						i.fa.fa-facebook
+				li.social-google-plus
+					a(href='#')
+						i.fa.fa-google-plus
 	footer
 		.container
 			p © 2016 Start Bootstrap. All Rights Reserved.
