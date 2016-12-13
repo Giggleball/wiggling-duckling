@@ -66,8 +66,7 @@ router.post( '/signup', ( req, res ) => {
 				username: req.body.username,
 				name: req.body.name,
 				email: req.body.email,
-				password: hash,
-				score: req.body.score
+				password: hash
 			})
 		}
 	})
@@ -158,11 +157,34 @@ router.get( '/game4', ( req, res ) => {
 
 
 // { Settings }
-router.get ( '/settings', ( req, res ) =>  {
+router.get( '/settings', ( req, res ) =>  {
 	console.log( 'viewing settings' )
 	res.render( 'setting', {
 		user:req.session.user
 	})
+})
+
+
+router.post( '/settings', ( res, req ) => {
+	User.findOne({
+        where: { id: req.session.user.id }
+    }).then( ( thisuser ) => {
+ 
+        bcrypt.compare(req.body.password, thisuser.password, ( err, data ) => {
+        	if (err !== undefined) {
+    			console.log(err);
+	    	} else {
+			    // store it in the database
+			    bcrypt.hash( req.body.new, 8, function ( err, hash ) {	
+    				thisuser.updateAttributes ({
+			 	    	password: hash
+			        })
+			    }) 
+			}
+        console.log( 'Userupdated!' )
+        res.redirect( '/settings' )
+    	})
+    })
 })
 
 
