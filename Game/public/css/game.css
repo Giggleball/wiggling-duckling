@@ -2,7 +2,7 @@ section h2 {
   margin-bottom: 20px; }
 
 section #main {
-  position: center; }
+  align-items: center; }
 
 a.btn {
   margin: 10px; }

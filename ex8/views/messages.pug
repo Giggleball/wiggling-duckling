@@ -56,7 +56,7 @@ html(lang='en')
 		section.about.bg-primary
 			.container
 				.row
-					.col-lg-8.col-lg-offset-2.text-center
+					.col-lg-8.col-lg-offset-2.text-center.container-fluid
 						if user
 							h2.section-heading Read all messages!
 							hr.light
@@ -74,7 +74,7 @@ html(lang='en')
 									if message.comments
 										each comment in message.comments
 											//-li.mer.list-unstyled #{comment.user.name}
-											li.mer.list-unstyled Comment: #{comment.body}
+											li.bgcom.mer.list-unstyled Comment: #{comment.body}
 							
 								form.reply(method='POST', action='/messages', autocomplete='off')
 									textarea.top.form-control(id='comments', type='text', name='body', placeholder='Type your comment here...', rows='3')
