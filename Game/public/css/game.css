@@ -1,8 +1,11 @@
 section h2 {
   margin-bottom: 20px; }
 
-section #main {
-  align-items: center; }
+section #my-memorygame {
+  margin-left: 50px; }
+
+section #my-memorygame_ra {
+  margin-left: 105px; }
 
 a.btn {
   margin: 10px; }
