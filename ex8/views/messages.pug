@@ -76,7 +76,7 @@ html(lang='en')
 											//-li.mer.list-unstyled #{comment.user.name}
 											li.mer.list-unstyled Comment: #{comment.body}
 							
-								form.reply(method='POST', action='/comments', autocomplete='off')
+								form.reply(method='POST', action='/messages', autocomplete='off')
 									textarea.top.form-control(id='comments', type='text', name='body', placeholder='Type your comment here...', rows='3')
 									br
 									input(type="text", value=message.id, name="post_id", hidden)

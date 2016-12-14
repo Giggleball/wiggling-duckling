@@ -217,10 +217,6 @@ bcrypt.hash(req.body.password, 8, function(err, hash) {
     res.render( 'register' )
 })
 
-router.post( '/comments', ( req, res ) => {
-    console.log( 'comment made' )
-    })
-
 
 module.exports = router
 
