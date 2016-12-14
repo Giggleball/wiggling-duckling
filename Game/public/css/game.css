@@ -14,6 +14,9 @@ body .bg-primary {
   min-width: 100%;
   min-height: 100%; }
 
+body form.set {
+  text-align: center; }
+
 body {
   font-family: Helvetica, Arial, Verdana; }
 
