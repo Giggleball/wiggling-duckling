@@ -44,19 +44,13 @@ body {
 		}
 	}
 
-	.bg-primary {
-
-		min-width: 100%;
-  		min-height: 100%;
-	}
-
 	form.set {
 		text-align: center;
 	}
 }
 
 body {
-      font-family:Helvetica, Arial, Verdana;
+    font-family:Helvetica, Arial, Verdana;
       
     }
     
@@ -75,6 +69,22 @@ body {
     .reset-button {
       margin: 0 0 1.5em 0;
     }
+
+body {
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    background: #fdcc52;
+    background: -webkit-no-repeat-linear-gradient(#fdcc52, #fdc539);
+    background: norepeat-linear-gradient(#fdcc52, #fdc539);
+}
+
+html {
+    height: 100%;
+}
+
+
+
 
 
 // // memory III

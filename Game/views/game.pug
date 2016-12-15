@@ -10,9 +10,10 @@ head
 	title きおく　ゲ-ム 
 
 	// Bootstrap Core CSS
-	link(href='/css/game.css', rel='stylesheet')
 	link(href='/css/bootstrap.min.css', rel='stylesheet')
-	
+
+	// Custom CSS
+	link(href='/css/game.css', rel='stylesheet')
 
 	// Custom Fonts
 	link(href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic', rel='stylesheet', type='text/css')
@@ -55,100 +56,115 @@ body#page-top.bg-primary
 						a.dash(href='http://localhost:8880/settings') Settings
 		// /.navbar-collapse
 	// /.container-fluid
-	section#download.download.text-center
+
+	// Brad Hussey #8
+	div#stage
+		div#stage-caption
+			h2.display-3 Step 1: Learning the Japanese Alphabet
+			p 
+				| 
+			
+
+	section#feature-one
 		.container
 			.row
-				.col-md-offset-2.col-md-8.col-md-offset-2
-					h2.section-heading Step 1: Learning the Japanese alphabeth!
-					br
+				.feature-content
+					.col-lg-6
+						a.btn.btn-outline.btn-xl(href='http://localhost:8880/game1') Up next Sa - To!
+						a.btn.btn-outline.btn-xl(href='http://localhost:8880/game2') Up next Ha - No!
+						a.btn.btn-outline.btn-xl(href='http://localhost:8880/game3') Up next Ma - Yo!
+						a.btn.btn-outline.btn-xl(href='http://localhost:8880/game4') Up next Ra - N!
+					div#my-memorygame.quizy-memorygame.col-lg-5.col-lg-offset-1
+					
+						ul
+							li.match1
+								img(src='/media/kana/A.png')
+						ul
+							li.match2
+								img(src='/media/kana/I.png')
+						ul
+							li.match3
+								img(src='/media/kana/U.png')
+						ul
+							li.match4
+								img(src='/media/kana/E.png')
+						ul
+							li.match5
+								img(src='/media/kana/O.png')
+						ul
+							li.match6
+								img(src='/media/kana/KA.png')
+						ul
+							li.match7
+								img(src='/media/kana/KI.png')
+						ul
+							li.match8
+								img(src='/media/kana/KU.png')
+						ul
+							li.match9
+								img(src='/media/kana/KE.png')
+						ul
+							li.match10
+								img(src='/media/kana/KO.png')
+							li.match1
+								br
+								br
+								br
+								p.text-style1 A
+							li.match2
+								br
+								br
+								br
+								p.text-style1 I
+							li.match3
+								br
+								br
+								br
+								p.text-style1 U
+							li.match4
+								br
+								br
+								br
+								p.text-style1 E
+							li.match5
+								br
+								br
+								br
+								p.text-style1 O
+							li.match6
+								br
+								br
+								br
+								p.text-style1 KA
+							li.match7
+								br
+								br
+								br
+								p.text-style1 KI
+							li.match8
+								br
+								br
+								br
+								p.text-style1 KU
+							li.match9
+								br
+								br
+								br
+								p.text-style1 KE
+							li.match10
+								br
+								br
+								br
+								p.text-style1 KO
 
-					div#main(role='main')
-						div#my-memorygame.quizy-memorygame
-							ul
-								li.match1
-									img(src='/media/kana/A.png')
-							ul
-								li.match2
-									img(src='/media/kana/I.png')
-							ul
-								li.match3
-									img(src='/media/kana/U.png')
-							ul
-								li.match4
-									img(src='/media/kana/E.png')
-							ul
-								li.match5
-									img(src='/media/kana/O.png')
-							ul
-								li.match6
-									img(src='/media/kana/KA.png')
-							ul
-								li.match7
-									img(src='/media/kana/KI.png')
-							ul
-								li.match8
-									img(src='/media/kana/KU.png')
-							ul
-								li.match9
-									img(src='/media/kana/KE.png')
-							ul
-								li.match10
-									img(src='/media/kana/KO.png')
-								li.match1
-									br
-									br
-									br
-									p.text-style1 A
-								li.match2
-									br
-									br
-									br
-									p.text-style1 I
-								li.match3
-									br
-									br
-									br
-									p.text-style1 U
-								li.match4
-									br
-									br
-									br
-									p.text-style1 E
-								li.match5
-									br
-									br
-									br
-									p.text-style1 O
-								li.match6
-									br
-									br
-									br
-									p.text-style1 KA
-								li.match7
-									br
-									br
-									br
-									p.text-style1 KI
-								li.match8
-									br
-									br
-									br
-									p.text-style1 KU
-								li.match9
-									br
-									br
-									br
-									p.text-style1 KE
-								li.match10
-									br
-									br
-									br
-									p.text-style1 KO
 
-					a.btn.btn-outline.btn-xl(href='http://localhost:8880/game1') Up next Sa - To!
-					a.btn.btn-outline.btn-xl(href='http://localhost:8880/game2') Up next Ha - No!
-					a.btn.btn-outline.btn-xl(href='http://localhost:8880/game3') Up next Ma - Yo!
-					a.btn.btn-outline.btn-xl(href='http://localhost:8880/game4') Up next Ra - N!
+
+
+
+
+	
+
+					
 	// jQuery
 	script(src='/js/jquery-3.1.1.min.js')
 
