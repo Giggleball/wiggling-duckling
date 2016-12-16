@@ -39,7 +39,7 @@ body#page-top
 					span.sr-only Toggle navigation
 					|  Menu 
 					i.fa.fa-bars
-				a.navbar-brand(href='http://localhost:8880/login') Start Learning
+				a.navbar-brand(href='/login') Start Learning
 				// Collect the nav links, forms, and other content for toggling
 			div#bs-example-navbar-collapse-1.collapse.navbar-collapse
 				ul.nav.navbar-nav.navbar-right
@@ -59,7 +59,7 @@ if user
 					.header-content
 						.header-content-inner
 							h1 Welcome #{user.name} we hope you're enjoying Kioku!
-							a.btn.btn-outline.btn-xl(href='http://localhost:8880/dash') Continue learning!
+							a.btn.btn-outline.btn-xl(href='/dash') Continue learning!
 				.col-sm-5
 else
 	header
@@ -70,34 +70,8 @@ else
 						.header-content-inner
 							h1
 								| Kioku is a memory game where you'll learn many new words through images!
-							a.btn.btn-outline.btn-xl(href='http://localhost:8880/login') Start Now for Free!
+							a.btn.btn-outline.btn-xl(href='/login') Start Now for Free!
 				.col-sm-5
-	//section#contact.contact.bg-primary
-		.container
-			h2
-				| We 
-				i.fa.fa-heart
-				|  new friends!
-			ul.list-inline.list-social
-				li.social-twitter
-					a(href='#')
-						i.fa.fa-twitter
-				li.social-facebook
-					a(href='#')
-						i.fa.fa-facebook
-				li.social-google-plus
-					a(href='#')
-						i.fa.fa-google-plus
-	//footer
-		.container
-			p © 2016 Start Bootstrap. All Rights Reserved.
-			ul.list-inline
-				li
-					a(href='#') Privacy
-				li
-					a(href='#') Terms
-				li
-					a(href='#') FAQ
 	// jQuery
 	script(src='/js/jquery-3.1.1.min.js')
 

@@ -114,7 +114,6 @@ router.get( '/dash', ( req, res ) => {
 
 
 
-
 // { Game }
 router.get( '/game', ( req, res ) => {
 	console.log( 'starting game' )
@@ -159,30 +158,32 @@ router.get( '/game4', ( req, res ) => {
 // { Settings }
 router.get( '/settings', ( req, res ) =>  {
 	console.log( 'viewing settings' )
+	console.log(req.session.user)
 	res.render( 'setting', {
 		user:req.session.user
 	})
 })
 
 
-router.post( '/settings', ( res, req ) => {
-	User.findOne({
+router.post( '/settings', ( req, res ) => {
+	seq.User.findOne({
         where: { id: req.session.user.id }
     }).then( ( thisuser ) => {
- 
+    	console.log( thisuser.password )
+    	console.log( req.body.password ) 
         bcrypt.compare(req.body.password, thisuser.password, ( err, data ) => {
         	if (err !== undefined) {
     			console.log(err);
 	    	} else {
 			    // store it in the database
-			    bcrypt.hash( req.body.new, 8, function ( err, hash ) {	
+			    bcrypt.hash( req.body.newpassword, 8, function ( err, hash ) {	
     				thisuser.updateAttributes ({
 			 	    	password: hash
 			        })
 			    }) 
 			}
-        console.log( 'Userupdated!' )
-        res.redirect( '/settings' )
+        console.log( 'Password updated!' )
+        res.redirect( '/dash' )
     	})
     })
 })
