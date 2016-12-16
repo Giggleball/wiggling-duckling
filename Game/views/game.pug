@@ -34,7 +34,7 @@ head
 	//if lt IE 9
 		script(src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
 		script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
-body#page-top.bg-primary
+body#page-top.bg-primary.games
 	nav#mainNav.navbar.navbar-default.navbar-fixed-top
 		div.container
 			div.navbar-header
@@ -56,26 +56,19 @@ body#page-top.bg-primary
 						a.dash(href='http://localhost:8880/settings') Settings
 		// /.navbar-collapse
 	// /.container-fluid
-
-	// Brad Hussey #8
-	div#stage
-		div#stage-caption
-			h2.display-3 Step 1: Learning the Japanese Alphabet
-			p 
-				| 
-			
-
-	section#feature-one
+	section#download.download.text-center
 		.container
 			.row
-				.feature-content
-					.col-lg-6
-						a.btn.btn-outline.btn-xl(href='http://localhost:8880/game1') Up next Sa - To!
-						a.btn.btn-outline.btn-xl(href='http://localhost:8880/game2') Up next Ha - No!
-						a.btn.btn-outline.btn-xl(href='http://localhost:8880/game3') Up next Ma - Yo!
-						a.btn.btn-outline.btn-xl(href='http://localhost:8880/game4') Up next Ra - N!
-					div#my-memorygame.quizy-memorygame.col-lg-5.col-lg-offset-1
-					
+				.col-md-offset-2.col-md-8.col-md-offset-2
+					h2.section-heading Step 1: learning the Japanese alphabeth!
+					br
+				div.col-md-3.ocol-md-ffset-1
+					a.btn.btn-outline.btn-xl(href='http://localhost:8880/game1') Up next Sa - To!
+					a.btn.btn-outline.btn-xl(href='http://localhost:8880/game2') Up next Ha - No!
+					a.btn.btn-outline.btn-xl(href='http://localhost:8880/game3') Up next Ma - Yo!
+					a.btn.btn-outline.btn-xl(href='http://localhost:8880/game4') Up next Ra - N!
+				div#main.col-md-8(role='main')
+					div#my-memorygame.quizy-memorygame
 						ul
 							li.match1
 								img(src='/media/kana/A.png')

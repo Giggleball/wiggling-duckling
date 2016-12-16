@@ -34,7 +34,7 @@ head
 	//if lt IE 9
 		script(src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
 		script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
-body#page-top.bg-primary
+body#page-top.bg-primary.games
 	nav#mainNav.navbar.navbar-default.navbar-fixed-top
 		div.container
 			div.navbar-header
@@ -62,9 +62,13 @@ body#page-top.bg-primary
 				.col-md-offset-2.col-md-8.col-md-offset-2
 					h2.section-heading Step 1: learning the Japanese alphabeth!
 					br
-					
-					div#main(role='main')
-						div#my-memorygame_ra.quizy-memorygame
+				div.col-md-3.ocol-md-ffset-1
+					a.btn.btn-outline.btn-xl(href='http://localhost:8880/game') Go back to A - Ko!
+					a.btn.btn-outline.btn-xl(href='http://localhost:8880/game1') Go back to Sa - To!
+					a.btn.btn-outline.btn-xl(href='http://localhost:8880/game2') Go back to Ha - No!
+					a.btn.btn-outline.btn-xl(href='http://localhost:8880/game4') Up next Ra - N!
+				div#main.col-md-8(role='main')
+					div#my-memorygame.quizy-memorygame
 							ul
 								li.match1
 									img(src='/media/kana/MA.png')
@@ -89,6 +93,7 @@ body#page-top.bg-primary
 							ul
 								li.match8
 									img(src='/media/kana/YO.png')
+
 								li.match1
 									br
 									br
@@ -130,10 +135,6 @@ body#page-top.bg-primary
 									br
 									p.text-style1 YO
 										
-					a.btn.btn-outline.btn-xl(href='http://localhost:8880/game') Go back to A - Ko!
-					a.btn.btn-outline.btn-xl(href='http://localhost:8880/game1') Go back to Sa - To!
-					a.btn.btn-outline.btn-xl(href='http://localhost:8880/game2') Go back to Ha - No!
-					a.btn.btn-outline.btn-xl(href='http://localhost:8880/game4') Up next Ra - N!
 	// jQuery
 	script(src='/js/jquery-3.1.1.min.js')
 

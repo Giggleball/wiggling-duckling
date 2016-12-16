@@ -2,10 +2,10 @@ section h2 {
   margin-bottom: 20px; }
 
 section #my-memorygame {
-  margin-left: 50px; }
+  margin-left: 30px; }
 
 section #my-memorygame_ra {
-  margin-left: 105px; }
+  margin-left: 25px; }
 
 a.btn {
   margin: 10px; }
@@ -26,43 +26,21 @@ body {
 .text-style1 {
   font-size: 34pt;
   font-weight: normal;
-  margin: 0;
-  line-height: 0pt; }
+  margin: 0; }
 
 .reset-button {
   margin: 0 0 1.5em 0; }
 
-body {
+body.games {
+  overflow: hidden;
   min-height: 100%;
   margin: 0;
   padding: 0;
-  background: #fdcc52;
-  background: -webkit-no-repeat-linear-gradient(#fdcc52, #fdc539);
-  background: norepeat-linear-gradient(#fdcc52, #fdc539); }
+  background: url("/media/img/light.jpeg") center center no-repeat;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  line-height: 0.2px; }
 
 html {
   height: 100%; }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
