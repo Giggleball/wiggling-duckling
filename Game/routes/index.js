@@ -106,10 +106,15 @@ router.post( '/login', bodyParser.urlencoded({extended: true}), ( req, res ) => 
 
 // { Dashboard }
 router.get( '/dash', ( req, res ) => {
-	console.log( 'viewing Dashboard' )
-	res.render( 'dash', {
-		user:req.session.user
-	})
+	let user = req.session.user
+	if (user === undefined) {
+        res.redirect('/')
+    } else {
+		console.log( 'viewing Dashboard' )
+		res.render( 'dash', {
+			user:req.session.user
+		})
+	}
 })
 
 
@@ -164,7 +169,7 @@ router.get( '/settings', ( req, res ) =>  {
 	})
 })
 
-
+// { Update Pasword }
 router.post( '/settings', ( req, res ) => {
 	seq.User.findOne({
         where: { id: req.session.user.id }
@@ -187,6 +192,25 @@ router.post( '/settings', ( req, res ) => {
     	})
     })
 })
+
+
+// { Change email adress }
+router.post( '/settings' , ( req, res ) => {
+	// Find current user by email
+	seq.User.findOne({
+		where: { id: req.session.user.email }
+	}).then( ( thisuser ) => {
+		// Update current user's email with new input
+		thisuser.updateAttributes ({
+			email: req.body.newemail
+		})
+	})	
+	console.log( req.body.newemail )
+	res.redirect( '/dash' )
+})
+
+
+
 
 
 // { Lougout }

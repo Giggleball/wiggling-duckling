@@ -71,6 +71,12 @@ body#page-top
 								| Change your email or password
 							form.set(action='/settings', method='post', onsubmit='return Validate()')
 								div.form-group
+									label(for='pwd') Current email:
+									input#pwd.form-control(name='email', placeholder='current email',autocomplete='off')
+								div.form-group
+									label(for='pwd') New email:
+									input#pwd.form-control(name='newemail', placeholder='new email',autocomplete='off')
+								div.form-group
 									label(for='pwd') Current password:
 									input#pwd.form-control(type='password', name='password', placeholder='current password',autocomplete='off')
 								div.form-group

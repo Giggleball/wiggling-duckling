@@ -19,3 +19,9 @@ section div #signin {
 
 img.size {
   width: 68%; }
+
+nav li a.black {
+  color: #222 !important; }
+
+nav a.black {
+  color: #222 !important; }
