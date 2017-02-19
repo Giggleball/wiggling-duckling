@@ -23,11 +23,11 @@ $(document).ready(function () {
 	})
 
 
-	// Confirming new password
+	// Confirming new passwords match
 	$('#pwd3').on('keyup', function() {
 		if($(this).val() != $('#pwd2').val()) {
-			$('#msg').html('Your passwords do not match!').css('color, red')
-		} else $('#msg').html('Your passwords match!').css('color, blue')	
+			$('#msg').html('Your passwords do not match!')
+		} else $('#msg').html('Your passwords match!')
 	})
 
 

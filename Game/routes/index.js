@@ -192,29 +192,35 @@ router.get( '/settingspassword', ( req, res ) => {
 
 // { Update Password }
 router.post( '/settings', ( req, res ) => {
-	seq.User.findOne({
-        where: { 
-        	id: req.session.user.id 
-        }
-    }).then( ( thisuser ) => {
-    	// console logging the input to check if it is working, remove when it is!
-    	console.log( thisuser.password )
-    	console.log( req.body.password ) 
-        bcrypt.compare(req.body.password, thisuser.password, ( err, data ) => {
-        	if (err !== undefined) {
-    			console.log(err);
-	    	} else {
-			    // store it in the database
-			    bcrypt.hash( req.body.newpassword, 8, function ( err, hash ) {	
-    				thisuser.updateAttributes ({
-			 	    	password: hash
-			        })
-			    }) 
-			}
-        console.log( 'Password updated!' )
-        res.redirect( '/dash' )
-    	})
-    })
+	// Compare input of new password and confirmed new password
+	if(req.body.newpassword !== req.body.newpassword1) {
+		res.redirect('settings?message=' + encodeURIComponent ("Your passwords did not match!"))
+		return
+	} else {
+		seq.User.findOne({
+	        where: { 
+	        	id: req.session.user.id 
+	        }
+	    }).then( ( thisuser ) => {
+	    	// console logging the input to check if it is working, remove when it is!
+	    	console.log( thisuser.password )
+	    	console.log( req.body.password ) 
+	        bcrypt.compare(req.body.password, thisuser.password, ( err, data ) => {
+	        	if (err !== undefined) {
+	    			console.log(err);
+		    	} else {
+				    // store it in the database
+				    bcrypt.hash( req.body.newpassword, 8, function ( err, hash ) {	
+	    				thisuser.updateAttributes ({
+				 	    	password: hash
+				        })
+				    }) 
+				}
+	        console.log( 'Password updated!' )
+	        res.redirect( '/dash' )
+	    	})
+	    })
+	}
 })
 
 
