@@ -168,7 +168,6 @@ router.get( '/game4', ( req, res ) => {
 // { Settings }
 router.get( '/settings', ( req, res ) =>  {
 	console.log( 'viewing settings' )
-	console.log(req.session.user)
 	res.render( 'setting', {
 		user:req.session.user
 	})
@@ -177,11 +176,11 @@ router.get( '/settings', ( req, res ) =>  {
 
 
 // { Update confirmation }
-router.get( '/settingsemail', ( req, res ) => {
-	res.render( 'settings-updated', {
-		user:req.session.user
-	})
-})
+// router.get( '/settingsemail', ( req, res ) => {
+// 	res.render( 'settings-updated', {
+// 		user:req.session.user
+// 	})
+// })
 
 router.get( '/settingspassword', ( req, res ) => {
 	res.render( 'settings-updated', {
@@ -191,8 +190,8 @@ router.get( '/settingspassword', ( req, res ) => {
 
 
 
-// { Update Pasword }
-router.post( '/settingspassword', ( req, res ) => {
+// { Update Password }
+router.post( '/settings', ( req, res ) => {
 	seq.User.findOne({
         where: { 
         	id: req.session.user.id 
@@ -213,36 +212,36 @@ router.post( '/settingspassword', ( req, res ) => {
 			    }) 
 			}
         console.log( 'Password updated!' )
-        res.redirect( '/settings-updated' )
+        res.redirect( '/dash' )
     	})
     })
 })
 
 
 
-// { Change email adress }
-router.post( '/settingsemail' , ( req, res ) => {
-	// Find current user by email
-	seq.User.findOne({
-		where: { 
-			email: req.body.newemail 
-		}
-	}).then( ( thisuser ) => {
-		// Update current user's email with an unique email address
-		seq.User.findOne({
-			where: {
-				email: req.session.user.email
-			}
-		}).then( ( thisuser ) => {
-			thisuser.updateAttributes({
-				email: req.body.newemail
-			})
-		})
-	})	
-	// View new email
-	console.log( req.body.newemail )
-	res.redirect( '/settings-updated' )
-})
+// // { Change email adress }
+// router.post( '/settingsemail' , ( req, res ) => {
+// 	// Find current user by email
+// 	seq.User.findOne({
+// 		where: { 
+// 			email: req.body.newemail 
+// 		}
+// 	}).then( ( thisuser ) => {
+// 		// Update current user's email with an unique email address
+// 		seq.User.findOne({
+// 			where: {
+// 				email: req.session.user.email
+// 			}
+// 		}).then( ( thisuser ) => {
+// 			thisuser.updateAttributes({
+// 				email: req.body.newemail
+// 			})
+// 		})
+// 	})	
+// 	// View new email
+// 	console.log( req.body.newemail )
+// 	res.redirect( '/settings-updated' )
+// })
 
 
 
