@@ -23,12 +23,13 @@ $(document).ready(function () {
 	})
 
 
-	$('#confirm').click(function(event) {
-		if($('#pwd2').val().trim().length === $('#pwd3').val().trim().length) {
-			event.preventDefault();
-			$('#error-message').html('Your passwords do not match!')
-		}
+	// Confirming new password
+	$('#pwd3').on('keyup', function() {
+		if($(this).val() != $('#pwd2').val()) {
+			$('#msg').html('Your passwords do not match!').css('color, red')
+		} else $('#msg').html('Your passwords match!').css('color, blue')	
 	})
+
 
 	// // On Click SignUp It Will Hide Login Form and Display Registration form
 	// $('#changepsw').click(function() {
