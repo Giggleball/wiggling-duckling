@@ -25,3 +25,13 @@ nav li a.black {
 
 nav a.black {
   color: #222 !important; }
+
+/*Hide the 2nd form on the login page*/
+#second {
+  display: none;
+}
+
+/*Hide the 2nd form on the settings page*/
+#fourth {
+  display: none;
+}

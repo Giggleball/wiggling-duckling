@@ -5,10 +5,6 @@ $(document).ready(function () {
 			$('#error-message').html('Your username or password is empty.')
 		}
 	})
-	
-	// Show only one form
-	$('#second').hide(function() {
-	})
 
 
 	// On Click SignUp It Will Hide Login Form and Display Registration form
@@ -23,6 +19,22 @@ $(document).ready(function () {
 	$('#signin').click(function() {
 		$('#second').slideUp('slow', function() {
 			$('#first').slideDown('slow');
+		})
+	})
+
+
+	// On Click SignUp It Will Hide Login Form and Display Registration form
+	$('#changepsw').click(function() {
+		$('#third').slideUp('slow', function() {
+			$('#fourth').slideDown('slow');
+		})
+	})
+
+
+	// On Click SignIn It Will Hide Registration Form and Display Login Form
+	$('#changemail').click(function() {
+		$('#fourth').slideUp('slow', function() {
+			$('#third').slideDown('slow');
 		})
 	})
 

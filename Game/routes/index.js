@@ -30,6 +30,7 @@ router.get( '/', ( req, res ) => {
 })
 
 
+
 // { Register + login page }
 router.get( '/login', ( req, res ) => {
 	console.log( 'registration' )
@@ -37,6 +38,7 @@ router.get( '/login', ( req, res ) => {
 		user:req.session.user
 	})
 })
+
 
 
 // { Signin up }
@@ -75,6 +77,7 @@ router.post( '/signup', ( req, res ) => {
 })
 
 
+
 // { Login }
 router.post( '/login', bodyParser.urlencoded({extended: true}), ( req, res ) => {
 	if(req.body.username.length === 0) {
@@ -102,6 +105,7 @@ router.post( '/login', bodyParser.urlencoded({extended: true}), ( req, res ) => 
 		} 
 	})
 })
+
 
 
 // { Dashboard }
@@ -160,6 +164,7 @@ router.get( '/game4', ( req, res ) => {
 })
 
 
+
 // { Settings }
 router.get( '/settings', ( req, res ) =>  {
 	console.log( 'viewing settings' )
@@ -169,11 +174,31 @@ router.get( '/settings', ( req, res ) =>  {
 	})
 })
 
+
+
+// { Update confirmation }
+router.get( '/settingsemail', ( req, res ) => {
+	res.render( 'settings-updated', {
+		user:req.session.user
+	})
+})
+
+router.get( '/settingspassword', ( req, res ) => {
+	res.render( 'settings-updated', {
+		user:req.session.user
+	})
+})
+
+
+
 // { Update Pasword }
-router.post( '/settings', ( req, res ) => {
+router.post( '/settingspassword', ( req, res ) => {
 	seq.User.findOne({
-        where: { id: req.session.user.id }
+        where: { 
+        	id: req.session.user.id 
+        }
     }).then( ( thisuser ) => {
+    	// console logging the input to check if it is working, remove when it is!
     	console.log( thisuser.password )
     	console.log( req.body.password ) 
         bcrypt.compare(req.body.password, thisuser.password, ( err, data ) => {
@@ -188,42 +213,47 @@ router.post( '/settings', ( req, res ) => {
 			    }) 
 			}
         console.log( 'Password updated!' )
-        res.redirect( '/dash' )
+        res.redirect( '/settings-updated' )
     	})
     })
 })
 
 
+
 // { Change email adress }
-router.post( '/settings' , ( req, res ) => {
+router.post( '/settingsemail' , ( req, res ) => {
 	// Find current user by email
 	seq.User.findOne({
-		where: { id: req.session.user.email }
+		where: { 
+			email: req.body.newemail 
+		}
 	}).then( ( thisuser ) => {
-		// Update current user's email with new input
-		thisuser.updateAttributes ({
-			email: req.body.newemail
+		// Update current user's email with an unique email address
+		seq.User.findOne({
+			where: {
+				email: req.session.user.email
+			}
+		}).then( ( thisuser ) => {
+			thisuser.updateAttributes({
+				email: req.body.newemail
+			})
 		})
 	})	
+	// View new email
 	console.log( req.body.newemail )
-	res.redirect( '/dash' )
+	res.redirect( '/settings-updated' )
 })
-
-
 
 
 
 // { Lougout }
 router.get( '/logout', ( req, res ) => {
-	req.session.destroy( function (err) {
-		if(err) {
-			throw err
-		}
-		res.redirect( '/')
+	req.session.destroy( (err) => {
+		if (err) 
+			throw (err)
+			res.redirect( '/')
 	})
 })
-
-
 
 module.exports = router
 

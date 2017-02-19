@@ -80,7 +80,7 @@ seq.User = seq.conn.define( 'user', {
 
 
 // Sync with DB
-seq.conn.sync( { 'force': false} ).then( 
+seq.conn.sync( { 'force': false } ).then( 
 	( ) => {
 		console.log( 'db has been updated' )
 	})

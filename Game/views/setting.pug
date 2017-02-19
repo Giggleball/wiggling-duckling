@@ -67,30 +67,74 @@ body#page-top
 							h2
 								| Settings
 								br
-							h3
-								| Change your email or password
-							form.set(action='/settings', method='post', onsubmit='return Validate()')
-								div.form-group
-									label(for='pwd') Current email:
-									input#pwd.form-control(name='email', placeholder='current email',autocomplete='off')
-								div.form-group
-									label(for='pwd') New email:
-									input#pwd.form-control(name='newemail', placeholder='new email',autocomplete='off')
+							//- h3
+							//- 	| Change your email or password
+							//- form.set(action='/settings', method='post', onsubmit='return Validate()')
+							//- 	div.form-group
+							//- 		label(for='pwd') Current email:
+							//- 		input#pwd.form-control(name='email', placeholder='current email',autocomplete='off')
+							//- 	div.form-group
+							//- 		label(for='pwd') New email:
+							//- 		input#pwd.form-control(name='newemail', placeholder='new email',autocomplete='off')
+							//- 	div.form-group
+							//- 		label(for='pwd') Current password:
+							//- 		input#pwd.form-control(type='password', name='password', placeholder='current password',autocomplete='off')
+							//- 	div.form-group
+							//- 		label(for='pwd') New password:
+							//- 		input#pwd.form-control(type='password', name='newpassword', placeholder='new password',autocomplete='off')
+
+							//- 		br
+							//- 		button.btn.btn-default(type='submit') Save changes!
+								
+
+							//- div#third
+							//- 	form.set(action='/settingsemail', method='post', onsubmit='return Validate()')
+							//- 	h3 Change your email
+							//- 	div.form-group
+							//- 		label(for='pwd') Current email:
+							//- 		input#pwd.form-control(name='email', placeholder='current email',autocomplete='off')
+							//- 	div.form-group
+							//- 		label(for='pwd') New email:
+							//- 		input#pwd.form-control(name='newemail', placeholder='new email',autocomplete='off')
+							//- 	div.form-group
+							//- 		label(for='pwd') Confirm new email:
+							//- 		input#pwd.form-control(name='newemail2', placeholder='new email',autocomplete='off')
+							//- 		br
+							//- 		input#check3.btn.btn-default(type='submit' value='Save changes!')
+							//- 		br
+							//- 		br
+							//- 		| Want to change your password? 
+							//- 		a#changepsw(href='#') Click here	
+							//- div#fourth.fourth
+							div
+								form.set(action='/settingspassword', method='post', onsubmit='return Validate()')
+								h3 Change your password
 								div.form-group
 									label(for='pwd') Current password:
 									input#pwd.form-control(type='password', name='password', placeholder='current password',autocomplete='off')
 								div.form-group
 									label(for='pwd') New password:
 									input#pwd.form-control(type='password', name='newpassword', placeholder='new password',autocomplete='off')
-
+								div.form-group
+									label(for='pwd') Confirm new password:
+									input#pwd.form-control(type='password', name='newpassword2', placeholder='new password',autocomplete='off')
 									br
-									button.btn.btn-default(type='submit') Save changes!
-									
+									input#check4.btn.btn-default(type='submit' value='Save changes!')
+									//- br
+									//- br
+									//- | Want to change your email? 
+									//- a#changemail(href='#') Click here
+
+
+							
 					
 				
 
 	// jQuery
 	script(src='/js/jquery-3.1.1.min.js')
+
+	// Custom Javascript
+	script(src='/js/custom.js')
 
 	// Bootstrap Core JavaScript
 	script(src='/js/bootstrap.min.js')
