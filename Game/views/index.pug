@@ -23,14 +23,15 @@ head
 	link(rel="stylesheet" href="/media/simple-line-icons/css/simple-line-icons.css")
 
 	// Theme CSS 
-	link(href="css/custom.css" rel="stylesheet")
 	link(href="css/new-age.min.css" rel="stylesheet")
+	link(href="css/custom.css" rel="stylesheet")
 
 	// HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
 	// WARNING: Respond.js doesn't work if you view the page via file://
 	//if lt IE 9
 		script(src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
 		script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
+
 body#page-top
 	nav#mainNav.navbar.navbar-default.navbar-fixed-top
 		div.container
@@ -52,26 +53,41 @@ body#page-top
 		// /.navbar-collapse
 	// /.container-fluid
 if user 
-	header
+	section
 		.container
 			.row
 				.col-sm-7
 					.header-content
 						.header-content-inner
-							h1 Welcome #{user.name} we hope you're enjoying Kioku!
+							h1 Welcome #{user.name} #{user.avatar} we hope you're enjoying Kioku!
+							br
 							a.btn.btn-outline.btn-xl(href='/dash') Continue learning!
 				.col-sm-5
+					.device-container
+						.device-mockup
+							.device
+								.screen
+									//- img.img-responsive.img-circle(src='/media/img/memo.jpg')
+									//- a.center(href='http://www.freepik.com/free-vector/two-realistic-frames_1014930.htm') Designed by starline
+
 else
-	header
+	section
 		.container
 			.row
 				.col-sm-7
 					.header-content
 						.header-content-inner
-							h1
-								| Kioku is a memory game where you'll learn many new words through images!
+							h1 Kioku is a memory game where you'll learn many new words through images!
+							br
 							a.btn.btn-outline.btn-xl(href='/login') Start Now for Free!
 				.col-sm-5
+					.device-container
+						.device-mockup
+							.device
+								.screen
+									//- img.img-responsive.img-circle(src='/media/img/lotus.jpg')
+									//- a(href='http://www.freepik.com/free-vector/modern-abstract-background_837489.htm') Designed by Kjpargeter
+
 	// jQuery
 	script(src='/js/jquery-3.1.1.min.js')
 

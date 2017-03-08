@@ -68,6 +68,16 @@ body#page-top
 								| Settings
 								br
 							h3
+								| Add a Avatar!
+							form.set(action='/settings', method='post')
+								label Select a file:
+								input.form-control(type='file', name='image')
+
+								br
+								button.btn.btn-default(type='submit') Upload
+								br
+									
+							h3
 								| Change your email or password
 							form.set(action='/settings', method='post', onsubmit='return Validate()')
 								div.form-group

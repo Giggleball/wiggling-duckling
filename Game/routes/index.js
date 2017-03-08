@@ -29,6 +29,12 @@ router.get( '/', ( req, res ) => {
 	})
 })
 
+router.get( '/index-1', ( req, res ) => {
+	console.log( 'main' )
+	res.render( 'index-1', {
+		user:req.session.user
+	})
+})
 
 
 // { Register + login page }
@@ -182,11 +188,11 @@ router.get( '/settings', ( req, res ) =>  {
 // 	})
 // })
 
-router.get( '/settingspassword', ( req, res ) => {
-	res.render( 'settings-updated', {
-		user:req.session.user
-	})
-})
+// router.get( '/settingspassword', ( req, res ) => {
+// 	res.render( 'settings-updated', {
+// 		user:req.session.user
+// 	})
+// })
 
 
 
@@ -222,6 +228,11 @@ router.post( '/settings', ( req, res ) => {
 	    })
 	}
 })
+
+
+
+// { Add Avatar }
+
 
 
 
