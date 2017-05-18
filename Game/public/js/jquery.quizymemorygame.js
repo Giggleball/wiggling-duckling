@@ -447,7 +447,8 @@ if(!Array.indexOf){
                          
   ****************************************************************************/
   
-  $.fn.quizyMemoryGame.defaults = {itemWidth: 156, itemHeight: 156, itemsMargin:10, colCount:4, animType:'scroll', animSpeed:140, openDelay:1300, flipAnim:'rl', resultIcons:true, gameSummary:true, randomised:true, textSummaryTitle:'Your game summary', replayButton:true, replayButtonText:'Replay', closeButtonText:'Close', textSummaryClicks:'clicks', textSummaryTime:'seconds', onFinishCall:''}
+  // Removed the Summary score settings
+  $.fn.quizyMemoryGame.defaults = {itemWidth: 156, itemHeight: 156, itemsMargin:10, colCount:4, animType:'scroll', animSpeed:140, openDelay:1300, flipAnim:'rl', resultIcons:false, gameSummary:false, randomised:true, replayButton:true, onFinishCall:''}
   
   
 })(jQuery);
